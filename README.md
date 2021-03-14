@@ -40,4 +40,5 @@ Application won't have
       User will not be able to chat
       
       
-      ![MovieApp](https://user-images.githubusercontent.com/58509123/111078105-476acb80-84f4-11eb-9464-aafc1f526848.png)
+      
+![MovieApp](https://user-images.githubusercontent.com/58509123/111078105-476acb80-84f4-11eb-9464-aafc1f526848.png)
