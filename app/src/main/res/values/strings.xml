@@ -1,6 +1,20 @@
 <resources>
     <string name="app_name">MyAndroidApplication</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_search">Search</string>
+    <string name="title_movies">Movies</string>
+    <string name="title_my_movies">My Movies</string>
+    <string name="search_here">Search here</string>
+    <string name="title_settings">Settings</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="movie">Movies</string>
+    <string name="tvShow">Tv Shows</string>
+    <string name="watchLater">Watch Later</string>
+    <string name="back">Back</string>
+    <string name="title_activity_selected_movie">SelectedMovieActivity</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="hello_world">Hello Square World!</string>
 </resources>

@@ -14,12 +14,34 @@
     <fragment
         android:id="@+id/navigation_dashboard"
         android:name="com.example.myandroidapplication.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_dashboard">
+
+        <action
+            android:id="@+id/navigate_to_selected_genre"
+            app:destination="@+id/selected_genre"
+            />
+    </fragment>
+
+    <fragment
+        android:id="@+id/selected_genre"
+        android:name="com.example.myandroidapplication.ui.dashboard.SelectedGenreFragment"
+        android:label="Selected Genre"
+        tools:layout="@layout/fragment_selected_genre" >
+        <action
+            android:id="@+id/navigate_to_search_fragment"
+            app:destination="@+id/navigation_dashboard"
+            />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.example.myandroidapplication.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
+        android:label="@string/title_settings"
         tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/navigation_movies"
+        android:name="com.example.myandroidapplication.ui.movies.MoviesFragment"
+        android:label="fragment_movies"
+        tools:layout="@layout/fragment_movies" />
+
 </navigation>

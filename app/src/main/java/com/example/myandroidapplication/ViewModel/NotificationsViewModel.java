@@ -1,4 +1,4 @@
-package com.example.myandroidapplication.ui.notifications;
+package com.example.myandroidapplication.ViewModel;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
