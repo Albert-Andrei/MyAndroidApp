@@ -17,13 +17,11 @@ public class Movie {
     private String backdropImage;
     @SerializedName("original_language")
     private String originalLanguage;
-    @SerializedName("release_date")
-    private Date releaseDate;
 
     public Movie() {
     }
 
-    public Movie(String id, String title, String rating, String overview, boolean adult, String verticalImageId, String horizontalImageId, String originalLanguage, Date releaseDate) {
+    public Movie(String id, String title, String rating, String overview, boolean adult, String verticalImageId, String horizontalImageId, String originalLanguage) {
         this.id = id;
         this.title = title;
         this.rating = rating;
@@ -32,7 +30,6 @@ public class Movie {
         this.posterImage = verticalImageId;
         this.backdropImage = horizontalImageId;
         this.originalLanguage = originalLanguage;
-        this.releaseDate = releaseDate;
     }
 
     public String getId() {
@@ -97,13 +94,5 @@ public class Movie {
 
     public void setOriginalLanguage(String originalLanguage) {
         this.originalLanguage = originalLanguage;
-    }
-
-    public Date getReleaseDate() {
-        return releaseDate;
-    }
-
-    public void setReleaseDate(Date releaseDate) {
-        this.releaseDate = releaseDate;
     }
 }

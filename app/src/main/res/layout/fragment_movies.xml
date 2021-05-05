@@ -37,7 +37,7 @@
                 />
 
             <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tabLayout"
+                android:id="@+id/tabLayoutDashboard"
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:background="@color/transparent"
@@ -50,6 +50,6 @@
         <androidx.viewpager.widget.ViewPager
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/viewPager"/>
+            android:id="@+id/viewPagerDashboard"/>
     </LinearLayout>
 </RelativeLayout>

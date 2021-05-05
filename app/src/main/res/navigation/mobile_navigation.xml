@@ -6,10 +6,24 @@
     app:startDestination="@+id/navigation_home">
 
     <fragment
+        android:id="@+id/splash_screen"
+        tools:layout="@layout/splash_screen">
+
+        <action
+            android:id="@+id/navigate_to_home"
+            app:destination="@+id/navigation_home" />
+    </fragment>
+
+    <fragment
         android:id="@+id/navigation_home"
         android:name="com.example.myandroidapplication.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+
+        <action
+            android:id="@+id/navigate_to_splash_screen"
+            app:destination="@+id/splash_screen" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_dashboard"
@@ -18,19 +32,17 @@
 
         <action
             android:id="@+id/navigate_to_selected_genre"
-            app:destination="@+id/selected_genre"
-            />
+            app:destination="@+id/selected_genre" />
     </fragment>
 
     <fragment
         android:id="@+id/selected_genre"
         android:name="com.example.myandroidapplication.ui.dashboard.SelectedGenreFragment"
         android:label="Selected Genre"
-        tools:layout="@layout/fragment_selected_genre" >
+        tools:layout="@layout/fragment_selected_genre">
         <action
             android:id="@+id/navigate_to_search_fragment"
-            app:destination="@+id/navigation_dashboard"
-            />
+            app:destination="@+id/navigation_dashboard" />
     </fragment>
 
     <fragment

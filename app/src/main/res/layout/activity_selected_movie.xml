@@ -56,7 +56,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="205dp"
         android:background="@drawable/box_round"
-        app:layout_constraintBottom_toTopOf="@+id/otherButton"
+        app:layout_constraintBottom_toTopOf="@+id/watchLater"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -128,7 +128,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/otherButton"
+        android:id="@+id/watchLater"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_marginStart="25dp"

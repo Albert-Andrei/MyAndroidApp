@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,11 @@ import android.widget.ProgressBar;
 import com.example.myandroidapplication.Model.movie.Movie;
 import com.example.myandroidapplication.R;
 import com.example.myandroidapplication.ViewModel.HomeViewModel;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -65,6 +71,7 @@ public class MovieFragment extends Fragment implements MovieAdapter.OnListItemCl
             int visibility = isLoading ? View.VISIBLE : View.INVISIBLE;
                 progressBar.setVisibility(visibility);
         });
+
         return root;
     }
 

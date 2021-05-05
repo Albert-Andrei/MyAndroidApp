@@ -1,10 +1,12 @@
 package com.example.myandroidapplication.ui.dashboard;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +29,7 @@ import com.example.myandroidapplication.Model.movie.Movie;
 import com.example.myandroidapplication.R;
 import com.example.myandroidapplication.ViewModel.DashboardViewModel;
 import com.example.myandroidapplication.ui.home.MovieAdapter;
+import com.example.myandroidapplication.ui.home.SelectedMovieActivity;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -140,7 +143,13 @@ public class DashboardFragment extends Fragment implements GenreAdapter.OnListIt
 
             isLoading.setValue(false);
 
-            GenreAdapter adapter = new GenreAdapter(genres, this);
+            GenreAdapter adapter = new GenreAdapter(genres, clickedItemIndex -> {
+                String toNewFragment = gson.toJson(list.get(clickedItemIndex));
+
+                viewModel.sendGenreInfo(toNewFragment);
+                Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.navigate_to_selected_genre);
+            });
+
             genreList.setAdapter(adapter);
         });
 
@@ -162,8 +171,23 @@ public class DashboardFragment extends Fragment implements GenreAdapter.OnListIt
 
             @Override
             public void afterTextChanged(Editable s) {
-                searchMovie(s.toString());
+                if (!s.toString().equals(""))
+                {
+                    searchMovie(s.toString());
+                } else {
+                    isSearched.setValue(false);
+                }
             }
+        });
+        searchEditText.setOnKeyListener((v, keyCode, event) -> {
+            // If the event is a key-down event on the "enter" button
+            if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+                    (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                // Perform action on key press
+                closeKeyboard();
+                return true;
+            }
+            return false;
         });
         return root;
     }
@@ -188,9 +212,9 @@ public class DashboardFragment extends Fragment implements GenreAdapter.OnListIt
         }
     }
 
-    @Override
-    public void onListItemClick(int clickedItemIndex) {
-
+//    @Override
+//    public void onListItemClick(int clickedItemIndex) {
+//
 //        Bundle bundle = new Bundle();
 //        bundle.putString("name", list.get(clickedItemIndex).getName());
 //
@@ -198,12 +222,7 @@ public class DashboardFragment extends Fragment implements GenreAdapter.OnListIt
 //        fragment.setArguments(bundle);
 //
 //        getActivity().getSupportFragmentManager().beginTransaction().add(R.id.container,fragment ).commit();
-
-        String toNewFragment = gson.toJson(list.get(clickedItemIndex));
-
-        viewModel.sendGenreInfo(toNewFragment);
-        Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.navigate_to_selected_genre);
-    }
+//    }
 
 //    @Overridex
 //    public void onListItemClick(int clickedItemIndex) {
@@ -228,19 +247,30 @@ public class DashboardFragment extends Fragment implements GenreAdapter.OnListIt
             if (!movies.isEmpty()) {
 
                 searchResult.hasFixedSize();
+                movieList = new ArrayList<>();
                 searchResult.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-                MovieAdapter adapter = new MovieAdapter(movies, getContext(), this);
 
-                movieList = new ArrayList<>();
                 for (int i = 0; i < movies.size(); i++)
                 {
                     movieList.add(movies.get(i));
                 }
 
+                MovieAdapter adapter = new MovieAdapter(movies, getContext(), clickedItemIndex -> {
+                    Intent intent = new Intent(getContext(), SelectedMovieActivity.class);
+                    String toNewView = gson.toJson(movieList.get(clickedItemIndex));
+                    intent.putExtra("movie", toNewView);
+
+                    startActivityForResult(intent, 1);
+                });
                 isSearched.setValue(true);
                 searchResult.setAdapter(adapter);
             }
         });
+    }
+
+    @Override
+    public void onListItemClick(int clickedItemIndex) {
+
     }
 }

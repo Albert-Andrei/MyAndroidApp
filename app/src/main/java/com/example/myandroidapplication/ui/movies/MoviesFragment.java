@@ -24,10 +24,10 @@ public class MoviesFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        myFragment = inflater.inflate(R.layout.fragment_home, container, false);
+        myFragment = inflater.inflate(R.layout.fragment_movies, container, false);
 
-        viewPager = myFragment.findViewById(R.id.viewPager);
-        tabLayout = myFragment.findViewById(R.id.tabLayout);
+        viewPager = myFragment.findViewById(R.id.viewPagerDashboard);
+        tabLayout = myFragment.findViewById(R.id.tabLayoutDashboard);
 
         return myFragment;
     }
@@ -60,8 +60,8 @@ public class MoviesFragment extends Fragment {
     private void setUpViewPager(ViewPager viewPager) {
         SectionPagerAdapter adapter = new SectionPagerAdapter(getChildFragmentManager());
 
-        adapter.addFragmnet(new MovieFragment(), "Movies");
-        adapter.addFragmnet(new TvShowsFragment(), "Tv  Shows");
+        adapter.addFragmnet(new MyMovies(), "Movies");
+        adapter.addFragmnet(new MyTvShows(), "Tv Shows");
 
         viewPager.setAdapter(adapter);
     }

@@ -88,10 +88,10 @@ public class SelectedGenreFragment extends Fragment implements MovieAdapter.OnLi
             getActivity().getWindow().setStatusBarColor(getActivity().getColor(R.color.main));
         });
 
-        myFragment.findViewById(R.id.imageViewSelectedGenre).setOnClickListener((View view) -> {
-            Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.navigate_to_search_fragment);
-            getActivity().getWindow().setStatusBarColor(getActivity().getColor(R.color.main));
-        });
+//        myFragment.findViewById(R.id.imageViewSelectedGenre).setOnClickListener((View view) -> {
+//            Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.navigate_to_search_fragment);
+//            getActivity().getWindow().setStatusBarColor(getActivity().getColor(R.color.main));
+//        });
 
         getActivity().getWindow().setStatusBarColor(getActivity().getColor(R.color.white));
         return myFragment;

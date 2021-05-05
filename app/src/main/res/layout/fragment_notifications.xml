@@ -38,21 +38,21 @@
         android:layout_height="150dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/genre_box"
         android:gravity="center"
-        app:singleSelection="true"
-        app:selectionRequired="true"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/sign_out"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:selectionRequired="true"
+        app:singleSelection="true">
 
         <Button
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:id="@+id/lightTheme"
-            android:onClick="enableLightTheme"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="100dp"
             android:layout_height="50dp"
+            android:onClick="enableLightTheme"
             android:text="Light"
             tools:ignore="OnClick" />
 
@@ -63,8 +63,8 @@
             android:layout_height="50dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:text="Dark"
             android:onClick="enableDarkTheme"
+            android:text="Dark"
             tools:ignore="OnClick" />
 
         <Button
@@ -72,11 +72,23 @@
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="100dp"
             android:layout_height="50dp"
-            android:text="Auto"
             android:onClick="autoChangeTheme"
-            tools:ignore="OnClick"
-            />
+            android:text="Auto"
+            tools:ignore="OnClick" />
 
     </com.google.android.material.button.MaterialButtonToggleGroup>
 
+    <Button
+        android:id="@+id/sign_out"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:text="@string/sign_out"
+        android:textAllCaps="false"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

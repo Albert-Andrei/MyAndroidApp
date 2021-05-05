@@ -1,14 +1,21 @@
 package com.example.myandroidapplication.Repository;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.myandroidapplication.Model.Data.MovieDAO;
 import com.example.myandroidapplication.Model.movie.Movie;
 import com.example.myandroidapplication.Model.movie.MovieResponse;
 import com.example.myandroidapplication.RemoteDataSource.movie.MovieAPI;
 import com.example.myandroidapplication.RemoteDataSource.movie.MovieServiceGenerator;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -23,11 +30,15 @@ public class MovieData {
     private final MutableLiveData<ArrayList<Movie>> movies;
     private final MutableLiveData<ArrayList<Movie>> moviesByGenre;
     private final MutableLiveData<ArrayList<Movie>> searchedMovies;
+    private DatabaseReference myRef;
+    private MovieDAO message;
+    String userId;
 
     private MovieData() {
         movies = new MutableLiveData<>();
         moviesByGenre = new MutableLiveData<>();
         searchedMovies = new MutableLiveData<>();
+        userId = "";
     }
 
     public static synchronized MovieData getInstance() {
@@ -35,6 +46,34 @@ public class MovieData {
             instance = new MovieData();
         }
         return instance;
+    }
+
+    public void init(String userId) {
+        myRef = FirebaseDatabase.getInstance("https://mymoviedb-9fd2a-default-rtdb.europe-west1.firebasedatabase.app/").getReference().child("users").child(userId);
+        message = new MovieDAO(myRef);
+    }
+
+    public void saveToWatchLater(Movie movieToSave) {
+        myRef.child("watch_later").push().setValue(movieToSave);
+    }
+
+//
+//    DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("message123");
+////        myRef.push().setValue(list.get(clickedItemIndex));
+//
+//        myRef.addValueEventListener(new ValueEventListener() {
+//
+//        public void onDataChange(DataSnapshot dataSnapshot) {
+//            Movie movie = dataSnapshot.getValue(Movie.class);
+//            Log.i("MOVIE", movie.getName() + " <><><><><><><><><><><><>");
+//        }
+//
+//        public void onCancelled(DatabaseError databaseError) {}
+//
+//    });
+
+    public MovieDAO getMovieFromDB() {
+        return message;
     }
 
     public LiveData<ArrayList<Movie>> getMovies() {
@@ -104,5 +143,13 @@ public class MovieData {
                 Log.i("Retrofit", "Something went wrong :(");
             }
         });
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getUserId() {
+        return userId;
     }
 }

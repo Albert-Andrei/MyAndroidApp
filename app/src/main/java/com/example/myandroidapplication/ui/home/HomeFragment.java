@@ -42,6 +42,7 @@ public class HomeFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+
         myFragment = inflater.inflate(R.layout.fragment_home, container, false);
 
         viewPager = myFragment.findViewById(R.id.viewPager);
