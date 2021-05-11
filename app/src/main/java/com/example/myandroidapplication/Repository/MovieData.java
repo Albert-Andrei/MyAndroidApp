@@ -3,19 +3,17 @@ package com.example.myandroidapplication.Repository;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.myandroidapplication.Model.Data.MovieDAO;
+import com.example.myandroidapplication.Model.MovieList;
 import com.example.myandroidapplication.Model.movie.Movie;
 import com.example.myandroidapplication.Model.movie.MovieResponse;
+import com.example.myandroidapplication.R;
 import com.example.myandroidapplication.RemoteDataSource.movie.MovieAPI;
 import com.example.myandroidapplication.RemoteDataSource.movie.MovieServiceGenerator;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -30,15 +28,12 @@ public class MovieData {
     private final MutableLiveData<ArrayList<Movie>> movies;
     private final MutableLiveData<ArrayList<Movie>> moviesByGenre;
     private final MutableLiveData<ArrayList<Movie>> searchedMovies;
-    private DatabaseReference myRef;
-    private MovieDAO message;
-    String userId;
+    private MovieDAO movieDAO;
 
     private MovieData() {
         movies = new MutableLiveData<>();
         moviesByGenre = new MutableLiveData<>();
         searchedMovies = new MutableLiveData<>();
-        userId = "";
     }
 
     public static synchronized MovieData getInstance() {
@@ -49,35 +44,27 @@ public class MovieData {
     }
 
     public void init(String userId) {
-        myRef = FirebaseDatabase.getInstance("https://mymoviedb-9fd2a-default-rtdb.europe-west1.firebasedatabase.app/").getReference().child("users").child(userId);
-        message = new MovieDAO(myRef);
+        movieDAO = new MovieDAO(userId);
     }
 
     public void saveToWatchLater(Movie movieToSave) {
-        myRef.child("watch_later").push().setValue(movieToSave);
+        movieDAO.saveToWatchLater(movieToSave);
     }
 
-//
-//    DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("message123");
-////        myRef.push().setValue(list.get(clickedItemIndex));
-//
-//        myRef.addValueEventListener(new ValueEventListener() {
-//
-//        public void onDataChange(DataSnapshot dataSnapshot) {
-//            Movie movie = dataSnapshot.getValue(Movie.class);
-//            Log.i("MOVIE", movie.getName() + " <><><><><><><><><><><><>");
-//        }
-//
-//        public void onCancelled(DatabaseError databaseError) {}
-//
-//    });
-
-    public MovieDAO getMovieFromDB() {
-        return message;
+    /**
+     * This method gets all movies from watch later and adds them into an array list
+     * @return WatchLater movie list object
+     */
+    public LiveData<MovieList> getWatchLaterListFromDB() {
+        return movieDAO.getWatchLaterListFromDB();
     }
 
     public LiveData<ArrayList<Movie>> getMovies() {
         return movies;
+    }
+
+    public LiveData<MovieList> getWatchLaterList() {
+        return movieDAO.getWatchLaterList();
     }
 
     public LiveData<ArrayList<Movie>> getMoviesByGenre() {
@@ -99,6 +86,7 @@ public class MovieData {
                     movies.setValue(response.body().getMovie());
                 }
             }
+
             @EverythingIsNonNull
             @Override
             public void onFailure(Call<MovieResponse> call, Throwable t) {
@@ -118,6 +106,7 @@ public class MovieData {
                     moviesByGenre.setValue(response.body().getMovie());
                 }
             }
+
             @EverythingIsNonNull
             @Override
             public void onFailure(Call<MovieResponse> call, Throwable t) {
@@ -137,19 +126,12 @@ public class MovieData {
                     searchedMovies.setValue(response.body().getMovie());
                 }
             }
+
             @EverythingIsNonNull
             @Override
             public void onFailure(Call<MovieResponse> call, Throwable t) {
                 Log.i("Retrofit", "Something went wrong :(");
             }
         });
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public String getUserId() {
-        return userId;
     }
 }

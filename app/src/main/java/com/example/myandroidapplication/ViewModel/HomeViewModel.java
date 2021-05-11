@@ -23,9 +23,8 @@ public class HomeViewModel extends AndroidViewModel {
         repository = MovieData.getInstance();
     }
 
-    public void init() {
+    public void init (){
         String userId = userRepository.getCurrentUser().getValue().getUid();
-        repository.setUserId(userId);
         repository.init(userId);
     }
 
@@ -46,7 +45,7 @@ public class HomeViewModel extends AndroidViewModel {
         repository.saveToWatchLater(movie);
     }
 
-    public LiveData<Movie> getMovieFromDB() {
-        return repository.getMovieFromDB();
-    }
+//    public LiveData<Movie> getMovieFromDB() {
+//        return repository.getMovieFromDB();
+//    }
 }

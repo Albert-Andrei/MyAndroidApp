@@ -28,7 +28,6 @@ public class SelectedMovieActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         viewModel = new ViewModelProvider(this).get(HomeViewModel.class);
-        viewModel.init();
 
         setContentView(R.layout.activity_selected_movie);
 

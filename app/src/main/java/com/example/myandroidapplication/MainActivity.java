@@ -84,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
     private void startHomeFragment() {
         handler.postDelayed((Runnable) () -> {
             startActivity(new Intent(this, HomeActivity.class));
+            viewModel.init();
             finish();
         }, 2000);
 

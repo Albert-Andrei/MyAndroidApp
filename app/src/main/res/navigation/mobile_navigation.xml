@@ -50,10 +50,25 @@
         android:name="com.example.myandroidapplication.ui.notifications.NotificationsFragment"
         android:label="@string/title_settings"
         tools:layout="@layout/fragment_notifications" />
+
     <fragment
         android:id="@+id/navigation_movies"
         android:name="com.example.myandroidapplication.ui.movies.MoviesFragment"
         android:label="fragment_movies"
-        tools:layout="@layout/fragment_movies" />
+        tools:layout="@layout/fragment_movies">
+        <action
+            android:id="@+id/navigate_to_selected_list"
+            app:destination="@+id/selected_list_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/selected_list_fragment"
+        android:name="com.example.myandroidapplication.ui.movies.SelectedList"
+        android:label="fragment_movies"
+        tools:layout="@layout/selected_list_fragment" >
+        <action
+            android:id="@+id/navigate_to_my_movies"
+            app:destination="@+id/navigation_movies" />
+    </fragment>
 
 </navigation>

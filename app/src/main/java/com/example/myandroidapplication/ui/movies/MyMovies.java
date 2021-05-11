@@ -1,15 +1,19 @@
 package com.example.myandroidapplication.ui.movies;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,8 +29,9 @@ public class MyMovies extends Fragment implements MyMoviesAdapter.OnListItemClic
 
     private MoviesViewModel viewModel;
     private Gson gson;
+    private TextView textView;
     private ArrayList<MovieList> list;
-    RecyclerView recyclerView;
+    private RecyclerView recyclerView;
     private ProgressBar progressBar;
     private MutableLiveData<Boolean> isLoading = new MutableLiveData<>(false);
     private MutableLiveData<ArrayList<MovieList>> caloh = new MutableLiveData<>();
@@ -39,43 +44,39 @@ public class MyMovies extends Fragment implements MyMoviesAdapter.OnListItemClic
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        this.viewModel = MoviesViewModel.getInstance();
-        viewModel.init();
-
-        MovieList opa = new MovieList("favorites");
-        MovieList opa1 = new MovieList("watch later");
-        MovieList opa2 = new MovieList("archive");
-        ArrayList<MovieList> privet = new ArrayList<>();
-        privet.add(opa1);
-        privet.add(opa);
-        privet.add(opa2);
-        caloh.setValue(privet);
-
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.my_movies_fragment, container, false);
         viewModel = MoviesViewModel.getInstance();
-
         isLoading.setValue(true);
 
         progressBar = root.findViewById(R.id.myMoviesProgressBar);
         recyclerView = root.findViewById(R.id.myMoviesRecycleView);
+        textView = root.findViewById(R.id.myMoviesListText);
         recyclerView.hasFixedSize();
 
-        GridLayoutManager manager = new GridLayoutManager(getContext(), 2, RecyclerView.VERTICAL, false);
-        recyclerView.setLayoutManager(manager);
+        viewModel.getWatchLaterListFromDB().observe(getViewLifecycleOwner(), movieList -> {
+            if (list.isEmpty()) {
+                list.add(movieList);
+            }
+            caloh.setValue(list);
+        });
 
-
-        getCalhoz().observe(getViewLifecycleOwner(), lists -> {
+        getCalhoz().observe(getViewLifecycleOwner(), listsOfMovieList -> {
             // Controleaza asta ca ciota interesant poate sa iasa aici
             // asta nu merge ca lista e live pahodu
 
-            for (int i = 0; i < lists.size(); i++) {
-                list.add(lists.get(i));
+            if (listsOfMovieList.size() == 0) {
+                textView.setText("No movies, please add some");
+                isLoading.setValue(false);
+            } else {
+                textView.setText("");
+                isLoading.setValue(false);
             }
-            isLoading.setValue(false);
 
+            GridLayoutManager manager = new GridLayoutManager(getContext(), 2, RecyclerView.VERTICAL, false);
+            recyclerView.setLayoutManager(manager);
             //   MovieAdapter adapter = new MovieAdapter(l, getContext(), this);
-            MyMoviesAdapter adapter = new MyMoviesAdapter(lists, this);
+            MyMoviesAdapter adapter = new MyMoviesAdapter(listsOfMovieList, this);
             recyclerView.setAdapter(adapter);
         });
 
@@ -96,6 +97,11 @@ public class MyMovies extends Fragment implements MyMoviesAdapter.OnListItemClic
 
     @Override
     public void onListItemClick(int clickedItemIndex) {
+//        Toast.makeText(getContext(), list.get(clickedItemIndex).getList().get(3).getName() , Toast.LENGTH_SHORT).show();
 
+//        String toNewFragment = gson.toJson(list.get(clickedItemIndex).getList());
+//
+//        viewModel.sendGenreInfo(toNewFragment);
+        Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.navigate_to_selected_list);
     }
 }
