@@ -47,6 +47,7 @@ public class SelectedGenreFragment extends Fragment implements MovieAdapter.OnLi
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View myFragment = inflater.inflate(R.layout.fragment_selected_genre, container, false);
+        getActivity().getWindow().setStatusBarColor(getActivity().getColor(R.color.main));
 
 //        String name = getArguments().getString("name");
 //        TextView genreName = getActivity().findViewById(R.id.selectedGenreName);

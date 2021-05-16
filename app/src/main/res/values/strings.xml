@@ -10,7 +10,11 @@
     <string name="movie">Movies</string>
     <string name="tvShow">Tv Shows</string>
     <string name="watchLater">Watch Later</string>
+    <string name="rateTheMovie">Please rate this movie.</string>
     <string name="back">Back</string>
+    <string name="themes">Themes</string>
+    <string name="done">Submit</string>
+    <string name="cancel">Cancel</string>
     <string name="listCalhoz">movies</string>
     <string name="title_activity_selected_movie">SelectedMovieActivity</string>
     <!--
@@ -26,6 +30,7 @@
     <string name="twitter_consumer_key" translatable="false">YOUR_CONSUMER_KEY</string>
     <string name="twitter_consumer_secret" translatable="false">YOUR_CONSUMER_SECRET</string>
 
-    <string name="sign_in_with_google">Sign in With Google</string>
+    <string name="sign_in_with_google">Sign-In with Google</string>
+    <string name="sign_in_with_mail">Sign-In with Mail</string>
     <string name="sign_out">Sign Out</string>
 </resources>

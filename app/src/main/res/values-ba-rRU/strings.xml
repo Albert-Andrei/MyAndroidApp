@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyMovieDB</string>
+    <string name="movie">Фильмы</string>
+    <string name="tvShow">Сериалы</string>
+    <string name="watchLater">Посмотреть позже</string>
+    <string name="rateTheMovie">Оцените этот фильм.</string>
+    <string name="back">"Назад "</string>
+    <string name="themes">Тема</string>
+    <string name="done">Подтвердить</string>
+    <string name="cancel">Отменить</string>
+    <string name="listCalhoz">фильмы</string>
+    <string name="title_activity_selected_movie">"ВыбрныеФильмы  "</string>
+    <string name="hello_world">"привет "</string>
+    <string name="sign_in_with_google">Войти с Google</string>
+    <string name="sign_in_with_mail">"Войти с Майлом "</string>
+    <string name="sign_out">Выход</string>
+    <string name="title_home">Главная</string>
+    <string name="title_search">Поиск</string>
+    <string name="title_movies">Фильмы</string>
+    <string name="title_my_movies">Мои Фильмы</string>
+    <string name="search_here">"Поиск "</string>
+    <string name="title_settings">"Настройки "</string>
+    <string name="hello_blank_fragment">Ooopse</string>
+</resources>

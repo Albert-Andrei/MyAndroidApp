@@ -5,6 +5,7 @@ import com.example.myandroidapplication.Model.movie.Movie;
 import java.util.ArrayList;
 
 public class MovieList {
+    private String id;
     private ArrayList<Movie> list;
     private String name;
     private int imageId;
@@ -17,6 +18,14 @@ public class MovieList {
     public MovieList(String name) {
         this.name = name;
         this.list = new ArrayList<>();
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public ArrayList<Movie> getList() {
@@ -54,5 +63,10 @@ public class MovieList {
 
     public void removeMovie(int id) {
         list.remove(id);
+    }
+
+    public boolean isEmpty()
+    {
+        return list.isEmpty();
     }
 }

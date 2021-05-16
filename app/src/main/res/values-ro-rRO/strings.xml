@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyMovieDB</string>
+    <string name="title_home">Acasă</string>
+    <string name="title_search">Caută</string>
+    <string name="title_movies">Filme</string>
+    <string name="title_my_movies">Filmele Mele</string>
+    <string name="search_here">Caută aici</string>
+    <string name="title_settings">Setări</string>
+    <string name="hello_blank_fragment">Ooopse</string>
+    <string name="movie">Filme</string>
+    <string name="tvShow">Seriale</string>
+    <string name="watchLater">Privește mai târziu</string>
+    <string name="rateTheMovie">Lăsați o recență.</string>
+    <string name="back">Înapoi</string>
+    <string name="themes">Teme</string>
+    <string name="done">Trimiteți</string>
+    <string name="listCalhoz">filme</string>
+    <string name="cancel">Anulează</string>
+    <string name="title_activity_selected_movie">FilmeleSelectate</string>
+    <string name="hello_world">Salut</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="sign_in_with_mail">Sign-In with Mail</string>
+    <string name="sign_in_with_google">Sign-In with Google</string>
+</resources>

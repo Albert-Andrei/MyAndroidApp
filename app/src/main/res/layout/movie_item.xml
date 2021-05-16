@@ -37,7 +37,7 @@
                     android:id="@+id/movie_image_v"
                     android:layout_width="124dp"
                     android:layout_height="185dp"
-                    android:src="@drawable/ic_home_black_24dp"
+                    android:src="@drawable/ic_baseline_do_not_disturb_alt_24"
                     app:shapeAppearanceOverlay="@style/RoundedSquare" />
 
                 <TableLayout

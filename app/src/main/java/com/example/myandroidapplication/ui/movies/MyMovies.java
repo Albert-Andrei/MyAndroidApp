@@ -21,6 +21,7 @@ import com.example.myandroidapplication.Model.MovieList;
 import com.example.myandroidapplication.R;
 import com.example.myandroidapplication.ViewModel.HomeViewModel;
 import com.example.myandroidapplication.ViewModel.MoviesViewModel;
+import com.example.myandroidapplication.ViewModel.NavigationViewModel;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -28,6 +29,7 @@ import java.util.ArrayList;
 public class MyMovies extends Fragment implements MyMoviesAdapter.OnListItemClickListener {
 
     private MoviesViewModel viewModel;
+    private NavigationViewModel navigationViewModel;
     private Gson gson;
     private TextView textView;
     private ArrayList<MovieList> list;
@@ -46,7 +48,9 @@ public class MyMovies extends Fragment implements MyMoviesAdapter.OnListItemClic
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.my_movies_fragment, container, false);
+        getActivity().getWindow().setStatusBarColor(getActivity().getColor(R.color.main));
         viewModel = MoviesViewModel.getInstance();
+        navigationViewModel = NavigationViewModel.getInstance();
         isLoading.setValue(true);
 
         progressBar = root.findViewById(R.id.myMoviesProgressBar);
@@ -54,12 +58,24 @@ public class MyMovies extends Fragment implements MyMoviesAdapter.OnListItemClic
         textView = root.findViewById(R.id.myMoviesListText);
         recyclerView.hasFixedSize();
 
-        viewModel.getWatchLaterListFromDB().observe(getViewLifecycleOwner(), movieList -> {
+//        viewModel.getWatchLaterListFromDB().observe(getViewLifecycleOwner(), movieList -> {
+//            if (list.isEmpty()) {
+//                list.add(movieList);
+//            }
+//            caloh.setValue(list);
+//        });
+
+        viewModel.getAllListsFromDB().observe(getViewLifecycleOwner(), something -> {
             if (list.isEmpty()) {
-                list.add(movieList);
+                for (MovieList movieList : something) {
+                    list.add(movieList);
+//                    Log.i("CHEEEEEECK", "<><><><<><>><>><><> onCreateView: " + movieList.getName() +
+//                            " " + movieList.getSize());
+                }
             }
             caloh.setValue(list);
         });
+
 
         getCalhoz().observe(getViewLifecycleOwner(), listsOfMovieList -> {
             // Controleaza asta ca ciota interesant poate sa iasa aici
@@ -102,6 +118,11 @@ public class MyMovies extends Fragment implements MyMoviesAdapter.OnListItemClic
 //        String toNewFragment = gson.toJson(list.get(clickedItemIndex).getList());
 //
 //        viewModel.sendGenreInfo(toNewFragment);
-        Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.navigate_to_selected_list);
+        if (list.get(clickedItemIndex).isEmpty()) {
+            Toast.makeText(getActivity(), "Nothing here yet", Toast.LENGTH_SHORT).show();
+        } else {
+            navigationViewModel.setListOfMovies(list.get(clickedItemIndex));
+            Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.navigate_to_selected_list);
+        }
     }
 }

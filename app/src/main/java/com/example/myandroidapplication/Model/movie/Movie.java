@@ -17,6 +17,7 @@ public class Movie {
     private String backdropImage;
     @SerializedName("original_language")
     private String originalLanguage;
+    private double personalRating = 0.0;
 
     public Movie() {
     }
@@ -30,6 +31,14 @@ public class Movie {
         this.posterImage = verticalImageId;
         this.backdropImage = horizontalImageId;
         this.originalLanguage = originalLanguage;
+    }
+
+    public double getPersonalRating() {
+        return personalRating;
+    }
+
+    public void setPersonalRating(double personalRating) {
+        this.personalRating = personalRating;
     }
 
     public String getId() {

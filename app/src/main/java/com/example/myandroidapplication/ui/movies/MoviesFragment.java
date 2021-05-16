@@ -35,6 +35,7 @@ public class MoviesFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        getActivity().getWindow().setStatusBarColor(getActivity().getColor(R.color.main));
 
         setUpViewPager(viewPager);
         tabLayout.setupWithViewPager(viewPager);

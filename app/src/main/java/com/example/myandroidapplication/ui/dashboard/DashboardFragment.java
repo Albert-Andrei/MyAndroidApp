@@ -12,7 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -44,6 +46,7 @@ public class DashboardFragment extends Fragment implements GenreAdapter.OnListIt
     private ArrayList<Movie> movieList;
     private ProgressBar progressBar;
     private EditText searchEditText;
+    private TextView cancelSearch;
     private MutableLiveData<Boolean> isLoading = new MutableLiveData<>(false);
     private MutableLiveData<Boolean> isSearched = new MutableLiveData<>(false);
 
@@ -56,6 +59,7 @@ public class DashboardFragment extends Fragment implements GenreAdapter.OnListIt
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
+        getActivity().getWindow().setStatusBarColor(getActivity().getColor(R.color.main));
 
         viewModel = DashboardViewModel.getInstance();
 
@@ -162,23 +166,46 @@ public class DashboardFragment extends Fragment implements GenreAdapter.OnListIt
         });
 
         searchEditText = root.findViewById(R.id.searchMovieEditText);
+        cancelSearch = root.findViewById(R.id.cancelSearch);
+        cancelSearch.setVisibility(View.INVISIBLE);
+
         searchEditText.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {}
 
             @Override
             public void afterTextChanged(Editable s) {
+                cancelSearch.setVisibility(View.VISIBLE);
+                ViewGroup.LayoutParams params = new LinearLayout.LayoutParams(700, ViewGroup.LayoutParams.WRAP_CONTENT, 1f);
+                searchEditText.setLayoutParams(params);
+
                 if (!s.toString().equals(""))
                 {
                     searchMovie(s.toString());
                 } else {
                     isSearched.setValue(false);
+                    cancelSearch.setVisibility(View.INVISIBLE);
+                    ViewGroup.LayoutParams params2 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1f);
+                    searchEditText.setLayoutParams(params2);
                 }
             }
         });
+
+        cancelSearch.setOnClickListener(v -> {
+            searchEditText.setText("");
+            ViewGroup.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1f);
+            searchEditText.setLayoutParams(params);
+            cancelSearch.setVisibility(View.INVISIBLE);
+            closeKeyboard();
+            isSearched.setValue(false);
+            movieList.clear();
+        });
+
         searchEditText.setOnKeyListener((v, keyCode, event) -> {
             // If the event is a key-down event on the "enter" button
             if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
@@ -212,29 +239,8 @@ public class DashboardFragment extends Fragment implements GenreAdapter.OnListIt
         }
     }
 
-//    @Override
-//    public void onListItemClick(int clickedItemIndex) {
-//
-//        Bundle bundle = new Bundle();
-//        bundle.putString("name", list.get(clickedItemIndex).getName());
-//
-//        Fragment fragment = new SelectedGenreFragment();
-//        fragment.setArguments(bundle);
-//
-//        getActivity().getSupportFragmentManager().beginTransaction().add(R.id.container,fragment ).commit();
-//    }
-
-//    @Overridex
-//    public void onListItemClick(int clickedItemIndex) {
-//        String toNewFragment = gson.toJson(list.get(clickedItemIndex));
-//
-//        viewModel.sendGenreInfo(toNewFragment);
-//        Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.navigate_to_selected_genre);
-//    }
-
     public void searchMovie(String name) {
         viewModel.searchMovie(name);
-
 
         isSearched().observe(getViewLifecycleOwner(), isSearched -> {
             int visibilityForGenreList = isSearched ? View.INVISIBLE : View.VISIBLE;

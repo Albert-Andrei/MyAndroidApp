@@ -32,51 +32,76 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_username" />
 
-    <com.google.android.material.button.MaterialButtonToggleGroup
-        android:id="@+id/buttonToggleGroup"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/box_round"
+        android:backgroundTint="@color/white"
+        android:layout_marginBottom="10dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/genre_box"
-        android:gravity="center"
         app:layout_constraintBottom_toTopOf="@+id/sign_out"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:selectionRequired="true"
-        app:singleSelection="true">
+        app:layout_constraintStart_toStartOf="parent">
 
-        <Button
-            android:id="@+id/lightTheme"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:onClick="enableLightTheme"
-            android:text="Light"
-            tools:ignore="OnClick" />
+        <com.google.android.material.button.MaterialButtonToggleGroup
+            android:id="@+id/buttonToggleGroup"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@drawable/genre_box"
+            android:gravity="center"
+            app:flow_verticalGap="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:selectionRequired="true"
+            app:singleSelection="true">
 
-        <Button
-            android:id="@+id/darkTheme"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:onClick="enableDarkTheme"
-            android:text="Dark"
-            tools:ignore="OnClick" />
+            <Button
+                android:id="@+id/lightTheme"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:onClick="enableLightTheme"
+                android:text="Light"
+                tools:ignore="OnClick" />
 
-        <Button
-            android:id="@+id/autoTheme"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:onClick="autoChangeTheme"
-            android:text="Auto"
-            tools:ignore="OnClick" />
+            <Button
+                android:id="@+id/darkTheme"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:onClick="enableDarkTheme"
+                android:text="Dark"
+                tools:ignore="OnClick" />
 
-    </com.google.android.material.button.MaterialButtonToggleGroup>
+            <Button
+                android:id="@+id/autoTheme"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:onClick="autoChangeTheme"
+                android:text="Auto"
+                tools:ignore="OnClick" />
+
+        </com.google.android.material.button.MaterialButtonToggleGroup>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingStart="20dp"
+            android:text="@string/themes"
+            android:textColor="@color/mainTextColor"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/buttonToggleGroup"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
         android:id="@+id/sign_out"

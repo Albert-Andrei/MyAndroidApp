@@ -10,6 +10,7 @@
     <ImageView
         android:layout_marginTop="22dp"
         android:id="@+id/backdropImage"
+        android:src="@drawable/ic_baseline_do_not_disturb_alt_24"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -134,6 +135,7 @@
         android:layout_marginStart="25dp"
         android:layout_marginEnd="25dp"
         android:layout_marginBottom="30dp"
+        android:textColor="@color/white"
         android:letterSpacing="0.3"
         android:text="@string/watchLater"
         android:background="@drawable/watch_later_btn"

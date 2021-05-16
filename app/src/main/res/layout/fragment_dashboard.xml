@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.dashboard.DashboardFragment">
 
+
     <LinearLayout
         android:id="@+id/searchLinearLayout"
         android:layout_width="match_parent"
@@ -13,41 +14,56 @@
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp">
 
         <TextView
             android:id="@+id/text_dashboard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:paddingLeft="20dp"
             android:text="@string/title_search"
             android:textColor="@color/black"
-            android:textSize="30dp"
+            android:textSize="30sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginBottom="10dp"
+            />
 
         <EditText
             android:id="@+id/searchMovieEditText"
             style="@style/editTextSearch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="20dp"
             android:background="@drawable/custom_input"
             android:drawableEnd="@drawable/ic_baseline_search_24"
             android:drawablePadding="10dp"
             android:hint="@string/search_here"
             android:padding="10dp"
             android:textCursorDrawable="@drawable/custom_cursor"
-            android:textSize="20dp"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_dashboard" />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/cancelSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="67dp"
+        android:layout_marginEnd="20dp"
+        android:textSize="25sp"
+        android:text="@string/cancel"
+        android:textAlignment="viewEnd"
+        android:textColor="@color/blue"
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/searchRecycleView"

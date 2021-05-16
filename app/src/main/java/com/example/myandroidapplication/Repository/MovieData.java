@@ -47,24 +47,24 @@ public class MovieData {
         movieDAO = new MovieDAO(userId);
     }
 
-    public void saveToWatchLater(Movie movieToSave) {
-        movieDAO.saveToWatchLater(movieToSave);
+    public void remove(String listId, String id) {
+        movieDAO.remove(listId, id);
     }
 
-    /**
-     * This method gets all movies from watch later and adds them into an array list
-     * @return WatchLater movie list object
-     */
-    public LiveData<MovieList> getWatchLaterListFromDB() {
-        return movieDAO.getWatchLaterListFromDB();
+    public void saveMovie(String listId, Movie movieToSave) {
+        movieDAO.saveMovie(listId, movieToSave);
+    }
+
+    public LiveData<ArrayList<MovieList>> getAllListsFromDB() {
+        return movieDAO.getAllListsFromDB();
+    }
+
+    public String getJustDeletedMovieId() {
+        return movieDAO.getJustDeletedMovieId();
     }
 
     public LiveData<ArrayList<Movie>> getMovies() {
         return movies;
-    }
-
-    public LiveData<MovieList> getWatchLaterList() {
-        return movieDAO.getWatchLaterList();
     }
 
     public LiveData<ArrayList<Movie>> getMoviesByGenre() {

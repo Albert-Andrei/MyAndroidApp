@@ -41,8 +41,8 @@ public class HomeViewModel extends AndroidViewModel {
         return repository.getMovies();
     }
 
-    public void saveToWatchLater(Movie movie) {
-        repository.saveToWatchLater(movie);
+    public void saveMovie(String listId, Movie movieToSave) {
+        repository.saveMovie(listId, movieToSave);
     }
 
 //    public LiveData<Movie> getMovieFromDB() {

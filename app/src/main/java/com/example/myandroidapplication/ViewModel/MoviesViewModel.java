@@ -14,11 +14,9 @@ public class MoviesViewModel extends ViewModel {
 
     private static MoviesViewModel instance;
     private MovieData repository;
-    MutableLiveData<String> calhozGrav;
 
     private MoviesViewModel() {
         repository = MovieData.getInstance();
-        calhozGrav = new MutableLiveData<>();
     }
 
     public static synchronized MoviesViewModel getInstance() {
@@ -28,19 +26,19 @@ public class MoviesViewModel extends ViewModel {
         return instance;
     }
 
-    public LiveData<MovieList> getWatchLaterListFromDB() {
-        return repository.getWatchLaterListFromDB();
+    public void remove(String listId, String id) {
+        repository.remove(listId, id);
     }
 
-    public LiveData<MovieList> getWatchLaterList() {
-        return repository.getWatchLaterList();
+    public void saveMovie(String listId, Movie movieToSave) {
+        repository.saveMovie(listId, movieToSave);
     }
 
-    public void sendGenreInfo(String message) {
-        calhozGrav.setValue(message);
+    public LiveData<ArrayList<MovieList>> getAllListsFromDB() {
+        return repository.getAllListsFromDB();
     }
 
-    public LiveData<String> getGenreInfo() {
-        return calhozGrav;
+    public String getJustDeletedMovieId() {
+        return repository.getJustDeletedMovieId();
     }
 }

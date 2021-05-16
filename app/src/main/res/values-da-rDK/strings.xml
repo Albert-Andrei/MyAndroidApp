@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyMovieDB</string>
+    <string name="title_home">Hjem</string>
+    <string name="title_search">Søg</string>
+    <string name="title_movies">Film</string>
+    <string name="title_my_movies">Mine film</string>
+    <string name="search_here">Søg her</string>
+    <string name="title_settings">Indstillinger</string>
+    <string name="hello_blank_fragment">Ooopse</string>
+    <string name="movie">Film</string>
+    <string name="tvShow">Tv Shows</string>
+    <string name="watchLater">Se senere</string>
+    <string name="rateTheMovie">Bedøm denne film.</string>
+    <string name="back">Tilbage</string>
+    <string name="themes">Temaer</string>
+    <string name="done">Indsend</string>
+    <string name="cancel">Afbestille</string>
+    <string name="listCalhoz">film</string>
+    <string name="title_activity_selected_movie">ValgtFilm</string>
+    <string name="hello_world">hej</string>
+    <string name="sign_in_with_google">Log ind med Google</string>
+    <string name="sign_in_with_mail">Log ind med Mail</string>
+    <string name="sign_out">Sign Out</string>
+</resources>

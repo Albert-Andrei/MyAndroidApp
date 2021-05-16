@@ -56,7 +56,7 @@ public class SelectedMovieActivity extends AppCompatActivity {
 
         Button watchLater = findViewById(R.id.watchLater);
         watchLater.setOnClickListener(v -> {
-            viewModel.saveToWatchLater(movie);
+            viewModel.saveMovie("watch_later",movie);
             Toast.makeText(this, movie.getName() + " Saved", Toast.LENGTH_SHORT).show();
             finish();
         });

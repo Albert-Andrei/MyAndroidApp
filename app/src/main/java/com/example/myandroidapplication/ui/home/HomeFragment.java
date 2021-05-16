@@ -44,6 +44,7 @@ public class HomeFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
 
         myFragment = inflater.inflate(R.layout.fragment_home, container, false);
+        getActivity().getWindow().setStatusBarColor(getActivity().getColor(R.color.main));
 
         viewPager = myFragment.findViewById(R.id.viewPager);
         tabLayout = myFragment.findViewById(R.id.tabLayout);

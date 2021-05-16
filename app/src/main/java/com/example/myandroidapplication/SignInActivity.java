@@ -7,15 +7,11 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.NavigationUI;
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.Arrays;
 import java.util.List;
@@ -38,10 +34,10 @@ public class SignInActivity extends AppCompatActivity {
             mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
             Button button = findViewById(R.id.sign_in_btn);
+            button.setOnClickListener(v -> signIn());
 
-            button.setOnClickListener(v -> {
-                signIn();
-            });
+            Button buttonMail = findViewById(R.id.sign_in_Email);
+            buttonMail.setOnClickListener(v -> signInWithMail());
 
         getWindow().setStatusBarColor(getColor(R.color.main));
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
@@ -49,7 +45,20 @@ public class SignInActivity extends AppCompatActivity {
 
     private void signIn() {
         List<AuthUI.IdpConfig> providers = Arrays.asList(
+                new AuthUI.IdpConfig.EmailBuilder().build(),
                 new AuthUI.IdpConfig.GoogleBuilder().build());
+
+        Intent signInIntent = AuthUI.getInstance()
+                .createSignInIntentBuilder()
+                .setAvailableProviders(providers)
+                .build();
+
+        startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
+
+    private void signInWithMail() {
+        List<AuthUI.IdpConfig> providers = Arrays.asList(
+                new AuthUI.IdpConfig.EmailBuilder().build());
 
         Intent signInIntent = AuthUI.getInstance()
                 .createSignInIntentBuilder()
@@ -69,13 +78,13 @@ public class SignInActivity extends AppCompatActivity {
 
     private void handleSignInRequest(int resultCode) {
         if (resultCode == RESULT_OK) {
-            startHomeFragment();
+            startMainActivity();
         } else
             Toast.makeText(this, "SIGN IN CANCELLED", Toast.LENGTH_SHORT).show();
     }
 
-    private void startHomeFragment() {
-        startActivity(new Intent(this, HomeActivity.class));
+    private void startMainActivity() {
+        startActivity(new Intent(this, MainActivity.class));
         finish();
     }
 }
