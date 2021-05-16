@@ -12,7 +12,7 @@ hard to remember the name.
 
 Application must have
 
-      User can create an account
+      User can sign-in into an account
       User can view a list of movies
       User can add a movie as favorite
       User can add a movie in watch later queue 
