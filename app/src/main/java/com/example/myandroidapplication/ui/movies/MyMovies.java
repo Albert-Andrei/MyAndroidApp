@@ -35,6 +35,7 @@ public class MyMovies extends Fragment implements MyMoviesAdapter.OnListItemClic
     private ArrayList<MovieList> list;
     private RecyclerView recyclerView;
     private ProgressBar progressBar;
+    private String name;
     private MutableLiveData<Boolean> isLoading = new MutableLiveData<>(false);
     private MutableLiveData<ArrayList<MovieList>> caloh = new MutableLiveData<>();
 
@@ -58,19 +59,29 @@ public class MyMovies extends Fragment implements MyMoviesAdapter.OnListItemClic
         textView = root.findViewById(R.id.myMoviesListText);
         recyclerView.hasFixedSize();
 
-//        viewModel.getWatchLaterListFromDB().observe(getViewLifecycleOwner(), movieList -> {
-//            if (list.isEmpty()) {
-//                list.add(movieList);
-//            }
-//            caloh.setValue(list);
-//        });
-
-        viewModel.getAllListsFromDB().observe(getViewLifecycleOwner(), something -> {
+        viewModel.getAllListsFromDB().observe(getViewLifecycleOwner(), theList -> {
             if (list.isEmpty()) {
-                for (MovieList movieList : something) {
+                for (MovieList movieList : theList) {
+                    if (movieList.getId() != null) {
+                        switch (movieList.getId()) {
+                            case "watch_later":
+                                name = getResources().getString(R.string.watchLater);
+                                movieList.setName(name);
+                                break;
+                            case "archive":
+                                name = getResources().getString(R.string.archive);
+                                movieList.setName(name);
+                                break;
+                            case "favorite":
+                                name = getResources().getString(R.string.favorite);
+                                movieList.setName(name);
+                                break;
+                            default:
+                                movieList = new MovieList("Unknown");
+                                movieList.setImageId(R.drawable.ic_baseline_do_not_disturb_alt_24);
+                        }
+                    }
                     list.add(movieList);
-//                    Log.i("CHEEEEEECK", "<><><><<><>><>><><> onCreateView: " + movieList.getName() +
-//                            " " + movieList.getSize());
                 }
             }
             caloh.setValue(list);
@@ -78,9 +89,6 @@ public class MyMovies extends Fragment implements MyMoviesAdapter.OnListItemClic
 
 
         getCalhoz().observe(getViewLifecycleOwner(), listsOfMovieList -> {
-            // Controleaza asta ca ciota interesant poate sa iasa aici
-            // asta nu merge ca lista e live pahodu
-
             if (listsOfMovieList.size() == 0) {
                 textView.setText("No movies, please add some");
                 isLoading.setValue(false);
@@ -91,7 +99,6 @@ public class MyMovies extends Fragment implements MyMoviesAdapter.OnListItemClic
 
             GridLayoutManager manager = new GridLayoutManager(getContext(), 2, RecyclerView.VERTICAL, false);
             recyclerView.setLayoutManager(manager);
-            //   MovieAdapter adapter = new MovieAdapter(l, getContext(), this);
             MyMoviesAdapter adapter = new MyMoviesAdapter(listsOfMovieList, this);
             recyclerView.setAdapter(adapter);
         });
@@ -113,11 +120,6 @@ public class MyMovies extends Fragment implements MyMoviesAdapter.OnListItemClic
 
     @Override
     public void onListItemClick(int clickedItemIndex) {
-//        Toast.makeText(getContext(), list.get(clickedItemIndex).getList().get(3).getName() , Toast.LENGTH_SHORT).show();
-
-//        String toNewFragment = gson.toJson(list.get(clickedItemIndex).getList());
-//
-//        viewModel.sendGenreInfo(toNewFragment);
         if (list.get(clickedItemIndex).isEmpty()) {
             Toast.makeText(getActivity(), "Nothing here yet", Toast.LENGTH_SHORT).show();
         } else {

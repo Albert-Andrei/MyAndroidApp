@@ -86,14 +86,17 @@ public class MovieDAO extends LiveData<Movie> {
         switch (id) {
             case "watch_later":
                 movieList = new MovieList("Watch later");
+                movieList.setId(id);
                 movieList.setImageId(R.drawable.ic_wtch_later_icon);
                 break;
             case "archive":
                 movieList = new MovieList("Archive");
+                movieList.setId(id);
                 movieList.setImageId(R.drawable.ic_baseline_archive_24);
                 break;
             case "favorite":
                 movieList = new MovieList("Favorite");
+                movieList.setId(id);
                 movieList.setImageId(R.drawable.add_to_favorite);
                 break;
             default:
@@ -119,32 +122,4 @@ public class MovieDAO extends LiveData<Movie> {
 
         return movieList;
     }
-//
-//    public LiveData<MovieList> getWatchLaterListFromDB() {
-//        MovieList movieList = new MovieList("Watch later");
-//
-//        myRef.child("watch_later").addValueEventListener(new ValueEventListener() {
-//
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                movieList.getList().clear();
-//                for (DataSnapshot child : dataSnapshot.getChildren()) {
-//                    Movie movie = child.getValue(Movie.class);
-//                    movie.setId(child.getKey());
-//                    movieList.setId(dataSnapshot.getKey());
-//                    movieList.addMovie(movie);
-//                }
-//                selectedMovieList.setValue(movieList);
-//            }
-//
-//            public void onCancelled(DatabaseError databaseError) {
-//            }
-//        });
-//
-//        movieList.setImageId(R.drawable.ic_wtch_later_icon);
-//        return selectedMovieList;
-//    }
-//
-//    public LiveData<MovieList> getWatchLaterList() {
-//        return selectedMovieList;
-//    }
 }

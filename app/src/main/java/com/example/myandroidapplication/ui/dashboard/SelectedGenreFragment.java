@@ -31,7 +31,6 @@ import java.util.ArrayList;
 public class SelectedGenreFragment extends Fragment implements MovieAdapter.OnListItemClickListener {
 
     private DashboardViewModel viewModel;
-    private RecyclerView genreList;
     private Gson gson;
     private Genre genre;
     private RecyclerView movieList;
@@ -48,10 +47,6 @@ public class SelectedGenreFragment extends Fragment implements MovieAdapter.OnLi
                              ViewGroup container, Bundle savedInstanceState) {
         View myFragment = inflater.inflate(R.layout.fragment_selected_genre, container, false);
         getActivity().getWindow().setStatusBarColor(getActivity().getColor(R.color.main));
-
-//        String name = getArguments().getString("name");
-//        TextView genreName = getActivity().findViewById(R.id.selectedGenreName);
-//        genreName.setText(name);
 
         isLoading.setValue(true);
         viewModel.getGenreInfo().observe(getViewLifecycleOwner(), name ->{
@@ -88,11 +83,6 @@ public class SelectedGenreFragment extends Fragment implements MovieAdapter.OnLi
             Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.navigate_to_search_fragment);
             getActivity().getWindow().setStatusBarColor(getActivity().getColor(R.color.main));
         });
-
-//        myFragment.findViewById(R.id.imageViewSelectedGenre).setOnClickListener((View view) -> {
-//            Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.navigate_to_search_fragment);
-//            getActivity().getWindow().setStatusBarColor(getActivity().getColor(R.color.main));
-//        });
 
         getActivity().getWindow().setStatusBarColor(getActivity().getColor(R.color.white));
         return myFragment;

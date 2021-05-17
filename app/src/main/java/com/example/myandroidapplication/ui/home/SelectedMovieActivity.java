@@ -33,9 +33,6 @@ public class SelectedMovieActivity extends AppCompatActivity {
 
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        setTitle("Send mail");
-
         Bundle bundle = getIntent().getExtras();
         String data = bundle.getString("movie");
         Movie movie = gson.fromJson(data, Movie.class);

@@ -1,6 +1,8 @@
 package com.example.myandroidapplication;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
@@ -36,6 +38,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -50,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         viewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         handler = new Handler();
+        loadLocal();
 
         setContentView(R.layout.splash_screen);
         getWindow().setStatusBarColor(getColor(R.color.white));
@@ -66,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
     private void checkIfSignedIn() {
         viewModel.getCurrentUser().observe(this, user -> {
             if (user != null) {
-                String message = "Welcome " + user.getDisplayName();
+                String message = welcomeMessage.getText().toString() + " " + user.getDisplayName();
                 Animation fadeIn = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_in);
                 welcomeMessage.setText(message);
                 welcomeMessage.setAnimation(fadeIn);
@@ -98,22 +102,6 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }, 1000);
 
-//            setContentView(R.layout.sing_in_fragment);
-//
-//            GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-//                    .requestIdToken(getString(R.string.default_web_client_id))
-//                    .requestEmail()
-//                    .build();
-//
-//            mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-//
-//            Button button = findViewById(R.id.sign_in_btn);
-//
-//            button.setOnClickListener(v -> {
-//                signIn();
-//            });
-//
-//            getWindow().setStatusBarColor(getColor(R.color.main));
         }, 1000);
     }
 
@@ -144,4 +132,22 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "SIGN IN CANCELLED", Toast.LENGTH_SHORT).show();
     }
 
+    public void loadLocal() {
+        SharedPreferences prefs = getSharedPreferences("Settings", MODE_PRIVATE);
+        String lang = prefs.getString("My_Lang", "");
+        setLocal(lang);
+    }
+
+    private void setLocal(String lang) {
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Configuration conf = new Configuration();
+        conf.locale = locale;
+        getResources().updateConfiguration(conf, getResources().getDisplayMetrics());
+        //Save changes to shared preferences
+        SharedPreferences prefs = getSharedPreferences("Settings", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("My_Lang", lang);
+        editor.apply();
+    }
 }

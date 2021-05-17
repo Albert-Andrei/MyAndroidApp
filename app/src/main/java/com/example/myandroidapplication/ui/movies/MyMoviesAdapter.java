@@ -18,7 +18,6 @@ import java.util.ArrayList;
 public class MyMoviesAdapter extends RecyclerView.Adapter<MyMoviesAdapter.ViewHolder>{
 
     private ArrayList<MovieList> lists;
-    // private Context context;
     final private OnListItemClickListener mOnListItemClickListener;
 
     public MyMoviesAdapter(ArrayList<MovieList> lists, OnListItemClickListener mOnListItemClickListener) {
@@ -42,6 +41,11 @@ public class MyMoviesAdapter extends RecyclerView.Adapter<MyMoviesAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.name.setText(lists.get(position).getName());
         String m = holder.size.getText().toString();
+        if (lists.get(position).getSize() == 0) {
+            holder.size.setVisibility(View.INVISIBLE);
+        } else {
+            holder.size.setVisibility(View.VISIBLE);
+        }
         holder.size.setText(lists.get(position).getSize() + " " + m);
         holder.image.setImageResource(lists.get(position).getImageId());
     }

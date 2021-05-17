@@ -25,6 +25,7 @@ import com.example.myandroidapplication.ViewModel.MoviesViewModel;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class SelectedListAdapter extends RecyclerView.Adapter<SelectedListAdapter.ViewHolder> {
 
@@ -33,7 +34,6 @@ public class SelectedListAdapter extends RecyclerView.Adapter<SelectedListAdapte
     private MoviesViewModel viewModel;
     private  Movie toFavorite;
     private String id;
-    // private Context context;
     final private SelectedListAdapter.OnListItemClickListener mOnListItemClickListener;
 
     public SelectedListAdapter(String id, ArrayList<Movie> list, Context context, SelectedListAdapter.OnListItemClickListener mOnListItemClickListener) {
@@ -80,9 +80,9 @@ public class SelectedListAdapter extends RecyclerView.Adapter<SelectedListAdapte
         Glide.with(context)
                 .load("https://image.tmdb.org/t/p/w500" + list.get(position).getPosterImage())
                 .into(holder.image);
-        toFavorite = list.get(position);
 
-        holder.imageAdd.setOnClickListener((View.OnClickListener) v -> {
+        holder.imageAdd.setOnClickListener(v -> {
+            toFavorite = list.get(position);
             list.remove(position);
             viewModel.remove(id, toFavorite.getId());
             dialog.show();
@@ -92,6 +92,7 @@ public class SelectedListAdapter extends RecyclerView.Adapter<SelectedListAdapte
                 toFavorite.setPersonalRating(value);
                 dialog.dismiss();
                 viewModel.saveMovie("favorite", toFavorite);
+                toFavorite = null;
             });
 
             this.notifyItemRemoved(position);

@@ -61,8 +61,10 @@ public class MoviesFragment extends Fragment {
     private void setUpViewPager(ViewPager viewPager) {
         SectionPagerAdapter adapter = new SectionPagerAdapter(getChildFragmentManager());
 
-        adapter.addFragmnet(new MyMovies(), "Movies");
-        adapter.addFragmnet(new MyTvShows(), "Tv Shows");
+        String movies = getResources().getString(R.string.movie);
+        String tv = getResources().getString(R.string.tvShow);
+        adapter.addFragmnet(new MyMovies(), movies);
+        adapter.addFragmnet(new MyTvShows(), tv);
 
         viewPager.setAdapter(adapter);
     }

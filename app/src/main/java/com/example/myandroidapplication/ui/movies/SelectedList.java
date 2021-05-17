@@ -42,7 +42,6 @@ public class SelectedList extends Fragment implements SelectedListAdapter.OnList
     View fragment;
     private MoviesViewModel viewModel;
     private NavigationViewModel navigationViewModel;
-    //    private Gson gson;
     private ArrayList<Movie> list;
     private TextView textView;
     private RecyclerView recyclerView;
@@ -53,10 +52,6 @@ public class SelectedList extends Fragment implements SelectedListAdapter.OnList
     private Button submit;
     private Dialog dialog;
     private EditText rating;
-
-    public SelectedList() {
-//        this.gson = new Gson();
-    }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -160,12 +155,15 @@ public class SelectedList extends Fragment implements SelectedListAdapter.OnList
                     // Saving the movie to archive list in DB
                     dialog.show();
 
-                    Snackbar snackbarArchive = Snackbar.make(recyclerView, deletedMovie.getName() + " Archived", Snackbar.LENGTH_LONG)
+                    String deleted = getResources().getString(R.string.removed);
+                    Snackbar snackbarArchive = Snackbar.make(recyclerView, deletedMovie.getName() + " " + deleted, Snackbar.LENGTH_LONG)
                             .setActionTextColor(ContextCompat.getColor(getContext(), R.color.red))
                             .setAction("Undo", v -> {
                                 list.add(position, deletedMovie);
                                 viewModel.remove("archive", viewModel.getJustDeletedMovieId());
-                                deletedMovie.setPersonalRating(0.0);
+                                if (listFromNavigation.getId().equals("watch_later")){
+                                    deletedMovie.setPersonalRating(0.0);
+                                }
                                 viewModel.saveMovie(listFromNavigation.getId(), deletedMovie);
                                 adapter.notifyItemInserted(position);
                             });
@@ -241,7 +239,6 @@ public class SelectedList extends Fragment implements SelectedListAdapter.OnList
                     break;
             }
         }
-
 
         @Override
         public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {

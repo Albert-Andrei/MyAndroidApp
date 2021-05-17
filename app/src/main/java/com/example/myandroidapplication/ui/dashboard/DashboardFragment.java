@@ -46,6 +46,7 @@ public class DashboardFragment extends Fragment implements GenreAdapter.OnListIt
     private ArrayList<Movie> movieList;
     private ProgressBar progressBar;
     private EditText searchEditText;
+    private String name;
     private TextView cancelSearch;
     private MutableLiveData<Boolean> isLoading = new MutableLiveData<>(false);
     private MutableLiveData<Boolean> isSearched = new MutableLiveData<>(false);
@@ -78,64 +79,103 @@ public class DashboardFragment extends Fragment implements GenreAdapter.OnListIt
             for (Genre genre: genres) {
                 switch (genre.getId()) {
                     case 28:
+                        name = getResources().getString(R.string.action);
+                        genre.setName(name);
                         genre.setImageId(R.drawable.action_c);
                         break;
                     case 12:
+                        name = getResources().getString(R.string.adventure);
+                        genre.setName(name);
                         genre.setImageId(R.drawable.adventure_c);
                         break;
                     case 16:
+                        name = getResources().getString(R.string.animation);
+                        genre.setName(name);
                         genre.setImageId(R.drawable.animation);
                         break;
                     case 35:
+                        name = getResources().getString(R.string.comedy);
+                        genre.setName(name);
                         genre.setImageId(R.drawable.comedy_c);
                         break;
                     case 80:
+                        name = getResources().getString(R.string.crime);
+                        genre.setName(name);
                         genre.setImageId(R.drawable.crime);
                         break;
                     case 99:
+                        name = getResources().getString(R.string.document);
+                        genre.setName(name);
                         genre.setImageId(R.drawable.documentary_c);
                         break;
                     case 18:
+                        name = getResources().getString(R.string.drama);
+                        genre.setName(name);
                         genre.setImageId(R.drawable.drama_c);
                         break;
                     case 10751:
+                        name = getResources().getString(R.string.family);
+                        genre.setName(name);
                         genre.setImageId(R.drawable.ic_baseline_family);
                         break;
                     case 14:
+                        name = getResources().getString(R.string.fantasy);
+                        genre.setName(name);
                         genre.setImageId(R.drawable.castle_c2);
                         break;
                     case 36:
+                        name = getResources().getString(R.string.history);
+                        genre.setName(name);
                         genre.setImageId(R.drawable.history_c2);
                         break;
                     case 27:
+                        name = getResources().getString(R.string.horror);
+                        genre.setName(name);
                         genre.setImageId(R.drawable.horror_c);
                         break;
                     case 10402:
+                        name = getResources().getString(R.string.music);
+                        genre.setName(name);
                         genre.setImageId(R.drawable.ic_baseline_music_note_24);
                         break;
                     case 9648:
+                        name = getResources().getString(R.string.mystery);
+                        genre.setName(name);
                         genre.setImageId(R.drawable.mistery_c);
                         break;
                     case 10749:
+                        name = getResources().getString(R.string.romance);
+                        genre.setName(name);
                         genre.setImageId(R.drawable.romance_c);
                         break;
                     case 878:
+                        name = getResources().getString(R.string.science);
+                        genre.setName(name);
                         genre.setImageId(R.drawable.scienceandfiction_c);
                         break;
                     case 10770:
+                        name = getResources().getString(R.string.tvmovie);
+                        genre.setName(name);
                         genre.setImageId(R.drawable.tvshows_c);
                         break;
                     case 53:
+                        name = getResources().getString(R.string.thriller);
+                        genre.setName(name);
                         genre.setImageId(R.drawable.triller_c);
                         break;
                     case 10752:
+                        name = getResources().getString(R.string.war);
+                        genre.setName(name);
                         genre.setImageId(R.drawable.war_c);
                         break;
                     case 37:
+                        name = getResources().getString(R.string.western);
+                        genre.setName(name);
                         genre.setImageId(R.drawable.western_c);
                         break;
                     default:
-                        genre.setImageId(R.drawable.ic_dashboard_black_24dp);
+                        genre.setName("");
+                        genre.setImageId(R.drawable.ic_baseline_do_not_disturb_alt_24);
                         break;
                 }
             }

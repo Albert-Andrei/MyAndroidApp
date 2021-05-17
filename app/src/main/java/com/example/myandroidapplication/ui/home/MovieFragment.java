@@ -77,7 +77,6 @@ public class MovieFragment extends Fragment implements MovieAdapter.OnListItemCl
 
     @Override
     public void onListItemClick(int clickedItemIndex) {
-        int movieNumber = clickedItemIndex + 1;
 
         Intent intent = new Intent(getContext(), SelectedMovieActivity.class);
         String toNewView = gson.toJson(list.get(clickedItemIndex));

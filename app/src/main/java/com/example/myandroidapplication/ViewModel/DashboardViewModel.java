@@ -58,9 +58,6 @@ public class DashboardViewModel extends ViewModel {
         movieRepository.searchMovie(name);
     }
 
-
-    // Calhoz grav and gavno code
-
     public void sendGenreInfo(String message) {
         calhozGrav.setValue(message);
     }

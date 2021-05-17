@@ -90,17 +90,60 @@
         </com.google.android.material.button.MaterialButtonToggleGroup>
 
         <TextView
+            android:id="@+id/textView7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:paddingStart="20dp"
             android:text="@string/themes"
             android:textColor="@color/mainTextColor"
             android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@+id/buttonToggleGroup"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/linearLayoutLang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:gravity="start"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/textView7"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageView
+                android:id="@+id/langIcon"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_baseline_do_not_disturb_alt_24"
+                android:layout_marginStart="40dp"/>
+
+            <TextView
+                android:id="@+id/languageTextField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="23sp"
+                android:text="Somtethign"
+                android:textColor="@color/mainTextColor"
+                android:paddingStart="5dp"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:paddingStart="20dp"
+            android:text="@string/lang"
+            android:textColor="@color/mainTextColor"
+            android:textSize="20sp"
+            android:layout_marginTop="15dp"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayoutLang"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
