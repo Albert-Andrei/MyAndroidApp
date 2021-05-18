@@ -55,8 +55,6 @@ public class MovieFragment extends Fragment implements MovieAdapter.OnListItemCl
         movieList.setLayoutManager(new LinearLayoutManager(getActivity()));
         viewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         viewModel.getMovies().observe(getViewLifecycleOwner(), movies -> {
-            // Controleaza asta ca ciota interesant poate sa iasa aici
-            // asta nu merge ca lista e live pahodu
                     for (int i = 0; i < movies.size(); i++)
                     {
                         list.add(movies.get(i));
@@ -81,6 +79,7 @@ public class MovieFragment extends Fragment implements MovieAdapter.OnListItemCl
         Intent intent = new Intent(getContext(), SelectedMovieActivity.class);
         String toNewView = gson.toJson(list.get(clickedItemIndex));
         intent.putExtra("movie", toNewView);
+        intent.putExtra("my_movies", false);
 
         startActivityForResult(intent, 1);
     }

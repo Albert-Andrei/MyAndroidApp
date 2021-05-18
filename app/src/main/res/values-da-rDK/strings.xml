@@ -46,4 +46,5 @@
     <string name="thriller">Thriller</string>
     <string name="war">Krig</string>
     <string name="western">Vestlig</string>
+    <string name="share_message">" en interessant film sendt af MyMovieDB til senere visning alene eller med venner. Tjek MyMovieDb-appen for at finde ud af mere!"</string>
 </resources>

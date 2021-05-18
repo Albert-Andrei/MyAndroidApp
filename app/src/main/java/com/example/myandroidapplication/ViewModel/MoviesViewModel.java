@@ -34,6 +34,9 @@ public class MoviesViewModel extends ViewModel {
         repository.saveMovie(listId, movieToSave);
     }
 
+    public void editMoviePersonalRating(String listId, String movieId, double rating) {
+        repository.editMoviePersonalRating(listId, movieId, rating);
+    }
     public LiveData<ArrayList<MovieList>> getAllListsFromDB() {
         return repository.getAllListsFromDB();
     }

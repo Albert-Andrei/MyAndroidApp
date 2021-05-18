@@ -1,9 +1,11 @@
 package com.example.myandroidapplication.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +22,7 @@ public class SelectedMovieActivity extends AppCompatActivity {
 
     private Gson gson = new Gson();
     private HomeViewModel viewModel;
+    private Movie movie;
 
     public SelectedMovieActivity() {
     }
@@ -35,7 +38,8 @@ public class SelectedMovieActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         String data = bundle.getString("movie");
-        Movie movie = gson.fromJson(data, Movie.class);
+        boolean check = bundle.getBoolean("my_movies");
+        movie = gson.fromJson(data, Movie.class);
 
         TextView textView = findViewById(R.id.expandedMovieTitle);
         textView.setText(movie.getName());
@@ -52,6 +56,32 @@ public class SelectedMovieActivity extends AppCompatActivity {
                 .into(image);
 
         Button watchLater = findViewById(R.id.watchLater);
+        LinearLayout linearLayout = findViewById(R.id.shareAndEditLinearLay);
+        linearLayout.setVisibility(View.INVISIBLE);
+        if (check) {
+            watchLater.setVisibility(View.INVISIBLE);
+            linearLayout.setVisibility(View.VISIBLE);
+        }
+
+        ImageView shareMovie = findViewById(R.id.shareMovieAc);
+        ImageView editMovie = findViewById(R.id.editMovieAc);
+
+        shareMovie.setOnClickListener(v -> {
+            Intent myIntent = new Intent(Intent.ACTION_SEND);
+            myIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{});
+            myIntent.setType("text/plain");
+            String msg = getResources().getString(R.string.share_message);
+            String body = movie.getName() + msg;
+            String sub = "Movie from MyMovieDB";
+            myIntent.putExtra(Intent.EXTRA_SUBJECT, sub);
+            myIntent.putExtra(Intent.EXTRA_TEXT, body);
+            startActivity(Intent.createChooser(myIntent, "Share using"));
+        });
+
+        editMovie.setOnClickListener(v -> {
+            // To implement
+        });
+
         watchLater.setOnClickListener(v -> {
             viewModel.saveMovie("watch_later",movie);
             Toast.makeText(this, movie.getName() + " Saved", Toast.LENGTH_SHORT).show();

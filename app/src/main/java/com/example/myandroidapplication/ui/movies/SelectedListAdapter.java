@@ -2,6 +2,7 @@ package com.example.myandroidapplication.ui.movies;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.util.Log;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,7 +34,7 @@ public class SelectedListAdapter extends RecyclerView.Adapter<SelectedListAdapte
     private ArrayList<Movie> list;
     private Context context;
     private MoviesViewModel viewModel;
-    private  Movie toFavorite;
+    private Movie toFavorite;
     private String id;
     final private SelectedListAdapter.OnListItemClickListener mOnListItemClickListener;
 
@@ -97,6 +99,31 @@ public class SelectedListAdapter extends RecyclerView.Adapter<SelectedListAdapte
 
             this.notifyItemRemoved(position);
         });
+
+        holder.shareMovie.setOnClickListener(v -> {
+            Movie share = list.get(position);
+            Intent myIntent = new Intent(Intent.ACTION_SEND);
+            myIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{});
+            myIntent.setType("text/plain");
+            String msg = context.getResources().getString(R.string.share_message);
+            String body = share.getName() + msg;
+            String sub = "Movie from MyMovieDB";
+            myIntent.putExtra(Intent.EXTRA_SUBJECT, sub);
+            myIntent.putExtra(Intent.EXTRA_TEXT, body);
+            context.startActivity(Intent.createChooser(myIntent, "Share using"));
+        });
+
+        holder.editMovie.setOnClickListener(v -> {
+            dialog.show();
+
+            submit.setOnClickListener(v1 -> {
+                double value = Double.parseDouble(rating.getText().toString());
+                dialog.dismiss();
+                list.get(position).setPersonalRating(value);
+                viewModel.editMoviePersonalRating(id, list.get(position).getId(), value);
+                notifyDataSetChanged();
+            });
+        });
     }
 
     @Override
@@ -104,12 +131,14 @@ public class SelectedListAdapter extends RecyclerView.Adapter<SelectedListAdapte
         return list.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView name;
         TextView rating;
         TextView personalRating;
         ImageView image;
         ImageView imageAdd;
+        ImageView shareMovie;
+        ImageView editMovie;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -118,9 +147,15 @@ public class SelectedListAdapter extends RecyclerView.Adapter<SelectedListAdapte
             personalRating = itemView.findViewById(R.id.personalRating);
             image = itemView.findViewById(R.id.imageSelectedListItem);
             imageAdd = itemView.findViewById(R.id.addToFavorite);
+            shareMovie = itemView.findViewById(R.id.shareMovie);
+            editMovie = itemView.findViewById(R.id.editMovie);
 
             if (id.equals("favorite")) {
                 imageAdd.setVisibility(View.INVISIBLE);
+            }
+
+            if (id.equals("watch_later")) {
+                editMovie.setVisibility(View.INVISIBLE);
             }
 
             itemView.setOnClickListener(this);

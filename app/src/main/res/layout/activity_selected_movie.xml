@@ -143,4 +143,48 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
+    <LinearLayout
+        android:id="@+id/shareAndEditLinearLay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="30dp"
+        android:textColor="@color/white"
+        android:letterSpacing="0.3"
+        android:orientation="horizontal"
+        android:text="@string/watchLater"
+        android:background="@drawable/watch_later_btn"
+        android:backgroundTint="@color/light_gray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/editMovieAc"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:src="@drawable/edit_black"
+            app:layout_constraintEnd_toStartOf="@+id/shareMovie"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ImageView
+            android:id="@+id/shareMovieAc"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:src="@drawable/share_black"
+            app:layout_constraintEnd_toStartOf="@+id/addToFavorite"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

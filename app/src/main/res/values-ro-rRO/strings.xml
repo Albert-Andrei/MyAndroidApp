@@ -46,4 +46,5 @@
     <string name="thriller">Thriller</string>
     <string name="war">Război</string>
     <string name="western">Occidental</string>
+    <string name="share_message">" este un film interesant de privit mai târziu singur sau cu prietenii, trimis de MyMovieDB. Verificați aplicația MyMovieDb pentru mai multe!"</string>
 </resources>

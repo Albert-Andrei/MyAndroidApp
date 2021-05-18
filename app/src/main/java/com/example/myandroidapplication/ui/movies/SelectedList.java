@@ -1,6 +1,7 @@
 package com.example.myandroidapplication.ui.movies;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -31,7 +32,9 @@ import com.example.myandroidapplication.Model.movie.Movie;
 import com.example.myandroidapplication.R;
 import com.example.myandroidapplication.ViewModel.MoviesViewModel;
 import com.example.myandroidapplication.ViewModel.NavigationViewModel;
+import com.example.myandroidapplication.ui.home.SelectedMovieActivity;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -39,7 +42,7 @@ import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
 
 public class SelectedList extends Fragment implements SelectedListAdapter.OnListItemClickListener {
 
-    View fragment;
+    private View fragment;
     private MoviesViewModel viewModel;
     private NavigationViewModel navigationViewModel;
     private ArrayList<Movie> list;
@@ -52,6 +55,7 @@ public class SelectedList extends Fragment implements SelectedListAdapter.OnList
     private Button submit;
     private Dialog dialog;
     private EditText rating;
+    private Gson gson = new Gson();
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -255,6 +259,11 @@ public class SelectedList extends Fragment implements SelectedListAdapter.OnList
 
     @Override
     public void onListItemClick(int clickedItemIndex) {
-        Toast.makeText(getContext(), "S-a apasat", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(getContext(), SelectedMovieActivity.class);
+        String toNewView = gson.toJson(list.get(clickedItemIndex));
+        intent.putExtra("movie", toNewView);
+        intent.putExtra("my_movies", true);
+
+        startActivityForResult(intent, 1);
     }
 }

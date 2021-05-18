@@ -46,4 +46,5 @@
     <string name="tvmovie">ТВ Фильм</string>
     <string name="war">Военные</string>
     <string name="western">"Вестерн "</string>
+    <string name="share_message">" интересный фильм, присланный MyMovieDB, для последующего просмотра в одиночестве или с друзьями. Ознакомьтесь с приложением MyMovieDb, чтобы узнать больше!"</string>
 </resources>

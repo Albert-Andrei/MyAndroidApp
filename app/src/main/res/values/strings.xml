@@ -40,6 +40,7 @@
     <string name="thriller">Thriller</string>
     <string name="war">War</string>
     <string name="western">Western</string>
+    <string name="share_message">" is a nice movie to watch later, sent from MyMovieDB. Check the MyMovieDb app for more!"</string>
     <string name="title_activity_selected_movie">SelectedMovieActivity</string>
     <!--
     This string is used for square devices and overridden by hello_world in

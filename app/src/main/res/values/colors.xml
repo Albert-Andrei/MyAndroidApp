@@ -12,6 +12,7 @@
     <color name="red">#D62F2F</color>
     <color name="green">#3D9C41</color>
     <color name="blue">#337EC3</color>
+    <color name="light_gray">#28B6B6B6</color>
     <color name="transparent">#00FFFFFF</color>
 
     <color name="tabColor">#EDEDED</color>

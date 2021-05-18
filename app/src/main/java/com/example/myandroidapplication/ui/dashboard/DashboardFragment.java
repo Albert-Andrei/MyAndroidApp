@@ -306,6 +306,7 @@ public class DashboardFragment extends Fragment implements GenreAdapter.OnListIt
                     Intent intent = new Intent(getContext(), SelectedMovieActivity.class);
                     String toNewView = gson.toJson(movieList.get(clickedItemIndex));
                     intent.putExtra("movie", toNewView);
+                    intent.putExtra("my_movies", false);
 
                     startActivityForResult(intent, 1);
                 });

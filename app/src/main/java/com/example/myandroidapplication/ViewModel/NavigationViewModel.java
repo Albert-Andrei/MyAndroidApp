@@ -8,11 +8,11 @@ import com.example.myandroidapplication.Repository.MovieData;
 public class NavigationViewModel extends ViewModel {
 
     private static NavigationViewModel instance;
-    private MovieData repository;
+//    private MovieData repository;
     private MovieList list;
 
     private NavigationViewModel() {
-        repository = MovieData.getInstance();
+//        repository = MovieData.getInstance();
     }
 
     public static synchronized NavigationViewModel getInstance() {

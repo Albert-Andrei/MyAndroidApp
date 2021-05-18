@@ -55,6 +55,10 @@ public class MovieData {
         movieDAO.saveMovie(listId, movieToSave);
     }
 
+    public void editMoviePersonalRating(String listId, String movieId, double rating) {
+        movieDAO.editMoviePersonalRating(listId, movieId, rating);
+    }
+
     public LiveData<ArrayList<MovieList>> getAllListsFromDB() {
         return movieDAO.getAllListsFromDB();
     }

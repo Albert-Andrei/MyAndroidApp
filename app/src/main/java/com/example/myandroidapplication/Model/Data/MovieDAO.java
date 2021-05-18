@@ -58,6 +58,11 @@ public class MovieDAO extends LiveData<Movie> {
         return deletedMovie;
     }
 
+    public void editMoviePersonalRating(String listId, String movieId, double rating) {
+        myRef.child(listId).child(movieId).child("personalRating").setValue(rating);
+    }
+
+
     public LiveData<ArrayList<MovieList>> getAllListsFromDB() {
         ArrayList<MovieList> allLists = new ArrayList<>();
 
