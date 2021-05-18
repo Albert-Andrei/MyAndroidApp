@@ -28,6 +28,8 @@ Application should have
 Application could have
 
       User can write their opinions on a movie
+      User can change interface laguage
+      User can change iterface theme 
       User can keep track of time and episodes.
       
 Application won't have
