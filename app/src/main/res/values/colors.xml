@@ -9,10 +9,11 @@
     <color name="mainTextColor">#171717</color>
     <color name="white">#FFFFFFFF</color>
     <color name="main">#EDEDED</color>
+    <color name="mainDark">#59585C</color>
     <color name="red">#D62F2F</color>
     <color name="green">#3D9C41</color>
     <color name="blue">#337EC3</color>
-    <color name="light_gray">#28B6B6B6</color>
+    <color name="light_gray">#38B6B6B6</color>
     <color name="transparent">#00FFFFFF</color>
 
     <color name="tabColor">#EDEDED</color>

@@ -58,7 +58,7 @@ public class TvShowsFragment extends Fragment implements MovieAdapter.OnListItem
     @Override
     public void onListItemClick(int clickedItemIndex) {
         int movieNumber = clickedItemIndex + 1;
-        Toast.makeText(getContext(), "Privet:  " + movieNumber, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "Coming soon", Toast.LENGTH_SHORT).show();
     }
 
     public class GetData extends AsyncTask<String, String, String> {

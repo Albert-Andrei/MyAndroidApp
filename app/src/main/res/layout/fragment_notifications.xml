@@ -8,38 +8,88 @@
     tools:context=".ui.notifications.NotificationsFragment">
 
     <TextView
-        android:id="@+id/text_username"
+        android:id="@+id/user_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:paddingLeft="20dp"
         android:text="username"
+        android:textAlignment="center"
+        android:layout_marginTop="125dp"
         android:textColor="@color/black"
-        android:textSize="30dp"
+        android:textSize="27sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user_name">
+
+        <TextView
+            android:id="@+id/thanks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/thanks"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/thanks">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/tvshows_c" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:background="@color/transparent"
+                android:fontFamily="@font/engagement"
+                android:text="@string/app_name"
+                android:textColor="@color/black"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile_image"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:src="@drawable/person"
         app:civ_border_color="#FF000000"
         app:civ_border_width="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_username" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/box_round"
-        android:backgroundTint="@color/white"
-        android:layout_marginBottom="10dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/box_round"
+        android:backgroundTint="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/sign_out"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -63,8 +113,7 @@
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="100dp"
                 android:layout_height="50dp"
-                android:onClick="enableLightTheme"
-                android:text="Light"
+                android:text="@string/Light"
                 tools:ignore="OnClick" />
 
             <Button
@@ -74,8 +123,7 @@
                 android:layout_height="50dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:onClick="enableDarkTheme"
-                android:text="Dark"
+                android:text="@string/Dark"
                 tools:ignore="OnClick" />
 
             <Button
@@ -83,8 +131,7 @@
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="100dp"
                 android:layout_height="50dp"
-                android:onClick="autoChangeTheme"
-                android:text="Auto"
+                android:text="@string/Auto"
                 tools:ignore="OnClick" />
 
         </com.google.android.material.button.MaterialButtonToggleGroup>
@@ -116,29 +163,29 @@
                 android:id="@+id/langIcon"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/ic_baseline_do_not_disturb_alt_24"
-                android:layout_marginStart="40dp"/>
+                android:layout_marginStart="40dp"
+                android:src="@drawable/ic_baseline_do_not_disturb_alt_24" />
 
             <TextView
                 android:id="@+id/languageTextField"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="23sp"
+                android:paddingStart="5dp"
                 android:text="Somtethign"
                 android:textColor="@color/mainTextColor"
-                android:paddingStart="5dp"/>
+                android:textSize="23sp" />
         </LinearLayout>
 
         <TextView
             android:id="@+id/textView5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
             android:layout_marginBottom="20dp"
             android:paddingStart="20dp"
             android:text="@string/lang"
             android:textColor="@color/mainTextColor"
             android:textSize="20sp"
-            android:layout_marginTop="15dp"
             app:layout_constraintBottom_toTopOf="@+id/linearLayoutLang"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

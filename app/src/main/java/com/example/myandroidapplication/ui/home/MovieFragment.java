@@ -80,6 +80,7 @@ public class MovieFragment extends Fragment implements MovieAdapter.OnListItemCl
         String toNewView = gson.toJson(list.get(clickedItemIndex));
         intent.putExtra("movie", toNewView);
         intent.putExtra("my_movies", false);
+        intent.putExtra("listId", "");
 
         startActivityForResult(intent, 1);
     }

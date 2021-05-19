@@ -95,6 +95,7 @@ public class SelectedGenreFragment extends Fragment implements MovieAdapter.OnLi
         String toNewView = gson.toJson(list.get(clickedItemIndex));
         intent.putExtra("movie", toNewView);
         intent.putExtra("my_movies", false);
+        intent.putExtra("listId", "");
 
         startActivityForResult(intent, 1);
     }

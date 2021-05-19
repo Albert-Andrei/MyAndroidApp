@@ -47,4 +47,8 @@
     <string name="war">Военные</string>
     <string name="western">"Вестерн "</string>
     <string name="share_message">" интересный фильм, присланный MyMovieDB, для последующего просмотра в одиночестве или с друзьями. Ознакомьтесь с приложением MyMovieDb, чтобы узнать больше!"</string>
+    <string name="Auto">Результаты перевода</string>
+    <string name="Dark">Ночь</string>
+    <string name="Light">День</string>
+    <string name="thanks">Спасибо за использование</string>
 </resources>

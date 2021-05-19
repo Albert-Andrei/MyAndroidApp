@@ -87,7 +87,6 @@
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
                     android:src="@drawable/share_black"
-                    app:layout_constraintEnd_toStartOf="@+id/addToFavorite"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
@@ -102,7 +101,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/personalRating"
+                android:id="@+id/personalRatingSelectedList"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"

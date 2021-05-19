@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -22,6 +24,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.bumptech.glide.Glide;
 import com.example.myandroidapplication.R;
 import com.example.myandroidapplication.SignInActivity;
 import com.example.myandroidapplication.ViewModel.HomeViewModel;
@@ -62,19 +65,30 @@ public class NotificationsFragment extends Fragment {
         themeButtons.addOnButtonCheckedListener((group, checkedId, isChecked) -> {
             if (isChecked) {
                 if (checkedId == R.id.lightTheme) {
-                    setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                 } else if (checkedId == R.id.darkTheme) {
-                    ((AppCompatActivity) getActivity()).getDelegate().setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                 } else {
-                    ((AppCompatActivity) getActivity()).getDelegate().setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+                    setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
                 }
             }
         });
 
-        LinearLayout linearLayoutLang = root.findViewById(R.id.linearLayoutLang);
-        linearLayoutLang.setOnClickListener(v -> {
-            showChangeLanguageDialog();
+        homeViewModel.getCurrentUser().observe(getActivity(), user -> {
+            if (user != null) {
+                TextView user_name = root.findViewById(R.id.user_name);
+                String hy = getResources().getString(R.string.welcome);
+                user_name.setText(hy + " " + user.getDisplayName());
+
+                ImageView profileImage = root.findViewById(R.id.profile_image);
+                Glide.with(this)
+                        .load(user.getPhotoUrl())
+                        .into(profileImage);
+            }
         });
+
+        LinearLayout linearLayoutLang = root.findViewById(R.id.linearLayoutLang);
+        linearLayoutLang.setOnClickListener(v -> showChangeLanguageDialog());
 
         Button signOutBtn = root.findViewById(R.id.sign_out);
         signOutBtn.setOnClickListener(v -> {

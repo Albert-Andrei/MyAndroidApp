@@ -1,6 +1,7 @@
 package com.example.myandroidapplication.ViewModel;
 
 import android.app.Application;
+import android.net.Uri;
 
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
@@ -45,7 +46,7 @@ public class HomeViewModel extends AndroidViewModel {
         repository.saveMovie(listId, movieToSave);
     }
 
-//    public LiveData<Movie> getMovieFromDB() {
-//        return repository.getMovieFromDB();
-//    }
+    public void editMoviePersonalRating(String listId, String movieId, double rating) {
+        repository.editMoviePersonalRating(listId, movieId, rating);
+    }
 }

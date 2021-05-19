@@ -263,6 +263,7 @@ public class SelectedList extends Fragment implements SelectedListAdapter.OnList
         String toNewView = gson.toJson(list.get(clickedItemIndex));
         intent.putExtra("movie", toNewView);
         intent.putExtra("my_movies", true);
+        intent.putExtra("listId", listFromNavigation.getId());
 
         startActivityForResult(intent, 1);
     }

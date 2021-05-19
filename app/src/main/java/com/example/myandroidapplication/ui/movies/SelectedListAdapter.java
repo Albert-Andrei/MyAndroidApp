@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -144,13 +145,15 @@ public class SelectedListAdapter extends RecyclerView.Adapter<SelectedListAdapte
             super(itemView);
             name = itemView.findViewById(R.id.nameSelectedListItem);
             rating = itemView.findViewById(R.id.ratingSelectedListItem);
-            personalRating = itemView.findViewById(R.id.personalRating);
+            personalRating = itemView.findViewById(R.id.personalRatingSelectedList);
             image = itemView.findViewById(R.id.imageSelectedListItem);
             imageAdd = itemView.findViewById(R.id.addToFavorite);
             shareMovie = itemView.findViewById(R.id.shareMovie);
             editMovie = itemView.findViewById(R.id.editMovie);
 
             if (id.equals("favorite")) {
+                ViewGroup.LayoutParams paramsForAdd = new LinearLayout.LayoutParams(1, 1, 1f);
+                imageAdd.setLayoutParams(paramsForAdd);
                 imageAdd.setVisibility(View.INVISIBLE);
             }
 

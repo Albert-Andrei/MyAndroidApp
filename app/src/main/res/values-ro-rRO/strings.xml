@@ -47,4 +47,8 @@
     <string name="war">Război</string>
     <string name="western">Occidental</string>
     <string name="share_message">" este un film interesant de privit mai târziu singur sau cu prietenii, trimis de MyMovieDB. Verificați aplicația MyMovieDb pentru mai multe!"</string>
+    <string name="Light">Zi</string>
+    <string name="Dark">Noapte</string>
+    <string name="Auto">Auto</string>
+    <string name="thanks">Vă mulțumim că folosiți</string>
 </resources>

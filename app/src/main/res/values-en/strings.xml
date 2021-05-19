@@ -47,4 +47,8 @@
     <string name="war">War</string>
     <string name="western">Western</string>
     <string name="share_message">" is a nice movie to watch later, sent from MyMovieDB. Check the MyMovieDb app for more!"</string>
+    <string name="Light">Light</string>
+    <string name="Dark">Dark</string>
+    <string name="Auto">Auto</string>
+    <string name="thanks">Thank you for using</string>
 </resources>

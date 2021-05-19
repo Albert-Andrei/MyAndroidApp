@@ -1,9 +1,14 @@
 package com.example.myandroidapplication.ui.home;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -23,6 +28,8 @@ public class SelectedMovieActivity extends AppCompatActivity {
     private Gson gson = new Gson();
     private HomeViewModel viewModel;
     private Movie movie;
+    private Dialog dialog;
+    private String listId;
 
     public SelectedMovieActivity() {
     }
@@ -36,9 +43,20 @@ public class SelectedMovieActivity extends AppCompatActivity {
 
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
+        dialog = new Dialog(this);
+        dialog.setContentView(R.layout.custom_dialog);
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.getWindow().getAttributes().windowAnimations = R.style.animation;
+        dialog.setCancelable(false);
+
+        Button submit = dialog.findViewById(R.id.doneRating);
+        EditText ratingDialogTView = dialog.findViewById(R.id.ratingEditText);
+
         Bundle bundle = getIntent().getExtras();
         String data = bundle.getString("movie");
         boolean check = bundle.getBoolean("my_movies");
+        listId = bundle.getString("listId");
         movie = gson.fromJson(data, Movie.class);
 
         TextView textView = findViewById(R.id.expandedMovieTitle);
@@ -78,12 +96,29 @@ public class SelectedMovieActivity extends AppCompatActivity {
             startActivity(Intent.createChooser(myIntent, "Share using"));
         });
 
+        if (listId.equals("watch_later")) {
+            editMovie.setVisibility(View.INVISIBLE);
+            ViewGroup.LayoutParams params = new LinearLayout.LayoutParams(1, ViewGroup.LayoutParams.WRAP_CONTENT, 1f);
+            editMovie.setLayoutParams(params);
+        }
+
         editMovie.setOnClickListener(v -> {
-            // To implement
+            dialog.show();
+
+            submit.setOnClickListener(v1 -> {
+                if (ratingDialogTView.getText().toString().equals("")) {
+                    Toast.makeText(this, "Please rate this movie", Toast.LENGTH_SHORT).show();
+                } else {
+                    double value = Double.parseDouble(ratingDialogTView.getText().toString());
+                    dialog.dismiss();
+                    movie.setPersonalRating(value);
+                    viewModel.editMoviePersonalRating(listId, movie.getId(), value);
+                }
+            });
         });
 
         watchLater.setOnClickListener(v -> {
-            viewModel.saveMovie("watch_later",movie);
+            viewModel.saveMovie("watch_later", movie);
             Toast.makeText(this, movie.getName() + " Saved", Toast.LENGTH_SHORT).show();
             finish();
         });
