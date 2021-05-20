@@ -9,10 +9,12 @@ time and episodes where they stopped.
   Motivation - sometimes I want to watch something and I have to spend some time finding an interesting movie. Moreover when someone asks for an interesting movie to watch it's
 hard to remember the name.
 
+## Lick to presentation video
+https://www.youtube.com/watch?v=5nZgh6DQLAo
 
 Application must have
 
-      -[*] User can sign-in into an account                  
+      - [x] User can sign-in into an account                  
       User can view a list of movies                    - Done
       User can add a movie as favorite                  - Done
       User can add a movie in watch later queue         - Done
@@ -35,10 +37,6 @@ Application could have
 Application won't have
 
       User will not be able to chat                                   
-      
-Lick to presentation video
-
-https://www.youtube.com/watch?v=5nZgh6DQLAo
-     
+          
       
 ![MovieApp](https://user-images.githubusercontent.com/58509123/111078105-476acb80-84f4-11eb-9464-aafc1f526848.png)
