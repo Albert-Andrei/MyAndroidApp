@@ -37,8 +37,8 @@ Application won't have
       User will not be able to chat                                   
       
 Lick to presentation video
-      
-      https://www.youtube.com/watch?v=5nZgh6DQLAo
+
+https://www.youtube.com/watch?v=5nZgh6DQLAo
      
       
 ![MovieApp](https://user-images.githubusercontent.com/58509123/111078105-476acb80-84f4-11eb-9464-aafc1f526848.png)
