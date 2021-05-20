@@ -12,7 +12,7 @@ hard to remember the name.
 
 Application must have
 
-      User can sign-in into an account                  - Done
+      -[*] User can sign-in into an account                  
       User can view a list of movies                    - Done
       User can add a movie as favorite                  - Done
       User can add a movie in watch later queue         - Done
