@@ -25,6 +25,7 @@ import com.example.myandroidapplication.ViewModel.NavigationViewModel;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class MyMovies extends Fragment implements MyMoviesAdapter.OnListItemClickListener {
 

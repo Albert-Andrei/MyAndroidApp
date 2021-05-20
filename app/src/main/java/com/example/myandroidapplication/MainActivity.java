@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.splash_screen);
         getWindow().setStatusBarColor(getColor(R.color.white));
         welcomeMessage = findViewById(R.id.welcomeMessage);
+        welcomeMessage.setText("");
 
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         checkIfSignedIn();
@@ -70,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
     private void checkIfSignedIn() {
         viewModel.getCurrentUser().observe(this, user -> {
             if (user != null) {
-                String message = welcomeMessage.getText().toString() + " " + user.getDisplayName();
+                String message = getResources().getString(R.string.welcome) + " " + user.getDisplayName();
                 Animation fadeIn = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_in);
                 welcomeMessage.setText(message);
                 welcomeMessage.setAnimation(fadeIn);

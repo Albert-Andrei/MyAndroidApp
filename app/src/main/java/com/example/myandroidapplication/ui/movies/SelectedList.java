@@ -165,7 +165,7 @@ public class SelectedList extends Fragment implements SelectedListAdapter.OnList
                             .setAction("Undo", v -> {
                                 list.add(position, deletedMovie);
                                 viewModel.remove("archive", viewModel.getJustDeletedMovieId());
-                                if (listFromNavigation.getId().equals("watch_later")){
+                                if (listFromNavigation.getId().equals("watch_later")) {
                                     deletedMovie.setPersonalRating(0.0);
                                 }
                                 viewModel.saveMovie(listFromNavigation.getId(), deletedMovie);
@@ -178,15 +178,20 @@ public class SelectedList extends Fragment implements SelectedListAdapter.OnList
                     submit.setOnClickListener(v -> {
                         String str = rating.getText().toString();
                         double value;
-                        if (!str.equals("")) {
-                             value = Double.parseDouble(str);
+                        if (rating.getText().toString().equals("")) {
+                            Toast.makeText(getContext(), "Please rate this movie", Toast.LENGTH_SHORT).show();
                         } else {
-                            value = 0.0;
+                            if (!str.equals("")) {
+                                value = Double.parseDouble(str);
+                            } else {
+                                value = 0.0;
+                            }
+                            deletedMovie.setPersonalRating(value);
+                            dialog.dismiss();
+                            rating.setText("");
+                            viewModel.saveMovie("archive", deletedMovie);
+                            snackbarArchive.show();
                         }
-                        deletedMovie.setPersonalRating(value);
-                        dialog.dismiss();
-                        viewModel.saveMovie("archive", deletedMovie);
-                        snackbarArchive.show();
                     });
 
                     adapter.notifyItemRemoved(position);

@@ -111,6 +111,7 @@ public class SelectedMovieActivity extends AppCompatActivity {
                 } else {
                     double value = Double.parseDouble(ratingDialogTView.getText().toString());
                     dialog.dismiss();
+                    ratingDialogTView.setText("");
                     movie.setPersonalRating(value);
                     viewModel.editMoviePersonalRating(listId, movie.getId(), value);
                 }

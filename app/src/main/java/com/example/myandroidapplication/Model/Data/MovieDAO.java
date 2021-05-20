@@ -73,7 +73,6 @@ public class MovieDAO extends LiveData<Movie> {
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
                     MovieList movieList = getMovieList(child.getKey());
                     allLists.add(movieList);
-//                    Log.i("CHECK", "<><><><><><><><><<><<><><><><><>onDataChange: " + child.getKey());
                 }
                 allMovieLists.setValue(allLists);
             }

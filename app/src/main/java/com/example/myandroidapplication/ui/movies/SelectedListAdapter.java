@@ -91,11 +91,16 @@ public class SelectedListAdapter extends RecyclerView.Adapter<SelectedListAdapte
             dialog.show();
 
             submit.setOnClickListener(v1 -> {
-                double value = Double.parseDouble(rating.getText().toString());
-                toFavorite.setPersonalRating(value);
-                dialog.dismiss();
-                viewModel.saveMovie("favorite", toFavorite);
-                toFavorite = null;
+                if (rating.getText().toString().equals("")) {
+                    Toast.makeText(context, "Please rate this movie", Toast.LENGTH_SHORT).show();
+                } else {
+                    double value = Double.parseDouble(rating.getText().toString());
+                    toFavorite.setPersonalRating(value);
+                    dialog.dismiss();
+                    rating.setText("");
+                    viewModel.saveMovie("favorite", toFavorite);
+                    toFavorite = null;
+                }
             });
 
             this.notifyItemRemoved(position);
@@ -118,11 +123,16 @@ public class SelectedListAdapter extends RecyclerView.Adapter<SelectedListAdapte
             dialog.show();
 
             submit.setOnClickListener(v1 -> {
-                double value = Double.parseDouble(rating.getText().toString());
-                dialog.dismiss();
-                list.get(position).setPersonalRating(value);
-                viewModel.editMoviePersonalRating(id, list.get(position).getId(), value);
-                notifyDataSetChanged();
+                if (rating.getText().toString().equals("")) {
+                    Toast.makeText(context, "Please rate this movie", Toast.LENGTH_SHORT).show();
+                } else {
+                    double value = Double.parseDouble(rating.getText().toString());
+                    dialog.dismiss();
+                    rating.setText("");
+                    list.get(position).setPersonalRating(value);
+                    viewModel.editMoviePersonalRating(id, list.get(position).getId(), value);
+                    notifyDataSetChanged();
+                }
             });
         });
     }
