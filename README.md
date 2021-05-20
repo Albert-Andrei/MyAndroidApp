@@ -14,7 +14,7 @@ https://www.youtube.com/watch?v=5nZgh6DQLAo
 
 Application must have
 
-      [x] User can sign-in into an account                  
+  - [x] User can sign-in into an account                  
       User can view a list of movies                    - Done
       User can add a movie as favorite                  - Done
       User can add a movie in watch later queue         - Done
